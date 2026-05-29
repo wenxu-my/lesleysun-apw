@@ -11,379 +11,310 @@
     --black: #1C1C1C;
     --cream: #F7F4F0;
     --gold: #C9A96E;
-    --gold-light: #E8D5B0;
     --white: #FFFFFF;
     --mid: #6B6B6B;
     --border: rgba(201,169,110,0.25);
-    --gap: 6rem;
+    --gap: 5.5rem;
   }
 
   html { scroll-behavior: smooth; }
+
+  /* Dark body bg — prevents white flash on mobile scroll */
   body {
-    background: var(--cream);
+    background: var(--black);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--black);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  /* ── TOP NAV ── */
+  /* ── NAV ── */
   .top-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(28,28,28,0.96);
-    backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(28,28,28,0.97); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 clamp(1.5rem,4vw,3.5rem);
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px;
+    padding: 0 clamp(1rem,4vw,3rem);
+    display: flex; align-items: center; justify-content: space-between; height: 52px;
   }
-  .top-nav .brand { font-family: Georgia, serif; font-style: italic; color: var(--gold); font-size: 1.1rem; letter-spacing: 0.06em; }
-  .top-nav .doc-tag { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,169,110,0.55); }
-  .top-nav .nav-links { display: flex; gap: 1.8rem; }
-  .top-nav .nav-links a {
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(247,244,240,0.45); text-decoration: none; transition: color 0.2s;
-  }
+  .top-nav .brand { font-family: Georgia, serif; font-style: italic; color: var(--gold); font-size: 1.05rem; letter-spacing: 0.06em; }
+  .top-nav .doc-tag { font-size: 0.56rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,169,110,0.5); }
+  .top-nav .nav-links { display: flex; gap: 1.5rem; }
+  .top-nav .nav-links a { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,244,240,0.42); text-decoration: none; transition: color 0.2s; }
   .top-nav .nav-links a:hover { color: var(--gold); }
+  @media (max-width: 600px) { .top-nav .nav-links { display: none; } }
 
   /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0; transform: translateY(28px);
-    transition: opacity 0.75s ease, transform 0.75s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.72s ease, transform 0.72s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal.d1 { transition-delay: 0.1s; }
-  .reveal.d2 { transition-delay: 0.2s; }
-  .reveal.d3 { transition-delay: 0.3s; }
-  .reveal.d4 { transition-delay: 0.45s; }
-  .reveal.d5 { transition-delay: 0.6s; }
+  .reveal.d1 { transition-delay: 0.1s; } .reveal.d2 { transition-delay: 0.2s; }
+  .reveal.d3 { transition-delay: 0.3s; } .reveal.d4 { transition-delay: 0.45s; }
 
   /* ── GOLD SHIMMER ── */
-  @keyframes goldShimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
+  @keyframes goldShimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
   .gold-shimmer {
-    background: linear-gradient(90deg, #C9A96E 0%, #F0E0B0 35%, #C9A96E 65%, #A8883F 100%);
+    background: linear-gradient(90deg,#C9A96E 0%,#F0E0B0 35%,#C9A96E 65%,#A8883F 100%);
     background-size: 200% auto;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     animation: goldShimmer 5s linear infinite;
   }
 
   /* ── HERO ── */
   .hero {
-    background: var(--black);
-    min-height: 100vh;
+    background: var(--black); min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 6rem clamp(2rem,8vw,10rem);
+    text-align: center; padding: 5rem clamp(1.5rem,8vw,10rem);
     position: relative; overflow: hidden;
   }
-  .hero-photo {
-    position: absolute; inset: 0;
-    background-image: url('LS Photos/2.jpg');
-    background-size: cover; background-position: center;
-  }
-  .hero-photo::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(160deg, rgba(28,28,28,0.92) 0%, rgba(28,28,28,0.72) 100%);
-  }
+  .hero-photo { position: absolute; inset: 0; background-image: url('LS Photos/Batik 2.jpg'); background-size: cover; background-position: center; }
+  .hero-photo::after { content:''; position:absolute; inset:0; background: linear-gradient(160deg,rgba(28,28,28,0.93) 0%,rgba(28,28,28,0.72) 100%); }
   .hero-content { position: relative; z-index: 1; }
-  .hero-eyebrow {
-    font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.8rem;
-  }
-  .hero h1 {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(3.5rem, 8vw, 7rem); color: var(--white);
-    line-height: 1; margin-bottom: 0.6rem;
-  }
-  .hero-tagline {
-    font-size: clamp(0.82rem, 1.4vw, 1.05rem); letter-spacing: 0.32em; text-transform: uppercase;
-    margin-bottom: 3rem;
-  }
-  .hero-divider { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 3rem; }
-  .hero-desc {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--cream); opacity: 0.85;
-    max-width: 660px; line-height: 1.75; margin: 0 auto 3.5rem;
-  }
-  .pill {
-    display: inline-block; border: 1px solid var(--gold); color: var(--gold);
-    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-    padding: 0.5rem 1.4rem; border-radius: 50px;
-  }
-  .hero-corner {
-    position: absolute; bottom: 2rem; right: 2.5rem; z-index: 1;
-    text-align: right; font-size: 0.58rem; letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.25); text-transform: uppercase; line-height: 1.8;
-  }
+  .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.6rem; }
+  .hero h1 { font-family: Georgia, serif; font-style: italic; font-size: clamp(3.2rem,8vw,7rem); color: var(--white); line-height: 1; margin-bottom: 0.6rem; }
+  .hero-tagline { font-size: clamp(0.78rem,1.3vw,1rem); letter-spacing: 0.32em; text-transform: uppercase; margin-bottom: 2.5rem; }
+  .hero-divider { width: 36px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+  .hero-desc { font-family: Georgia, serif; font-style: italic; font-size: clamp(0.95rem,1.7vw,1.35rem); color: var(--cream); opacity: 0.85; max-width: 640px; line-height: 1.75; margin: 0 auto 3rem; }
+  .pill { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.45rem 1.3rem; border-radius: 50px; }
+  .hero-corner { position: absolute; bottom: 1.8rem; right: 2rem; z-index: 1; text-align: right; font-size: 0.56rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.22); text-transform: uppercase; line-height: 1.8; }
+  @media (max-width: 500px) { .hero-corner { display: none; } }
 
   /* ── PROOF STRIP ── */
-  .proof-strip {
-    background: var(--gold); padding: 1rem clamp(1.5rem,5vw,4rem);
-    display: flex; align-items: center; justify-content: center;
-    gap: 2.5rem; flex-wrap: wrap;
-  }
+  .proof-strip { background: var(--gold); padding: 0.9rem clamp(1rem,4vw,3rem); display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
   .proof-item { text-align: center; }
-  .proof-num { font-family: Georgia, serif; font-style: italic; font-size: 1.5rem; color: var(--black); line-height: 1; }
-  .proof-label { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(28,28,28,0.65); }
+  .proof-num { font-family: Georgia, serif; font-style: italic; font-size: 1.4rem; color: var(--black); line-height: 1; }
+  .proof-label { font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(28,28,28,0.62); }
 
-  /* ── SECTION WRAPPER ── */
-  .section { padding: var(--gap) clamp(1.5rem, 5vw, 6rem); }
+  /* ── SECTIONS ── */
+  .section { padding: var(--gap) clamp(1.2rem,5vw,5.5rem); }
   .section.dark { background: var(--black); color: var(--cream); }
   .section.cream { background: var(--cream); color: var(--black); }
-  .section.white { background: var(--white); color: var(--black); }
+  @media (max-width: 600px) { .section { padding: 3.5rem 1.2rem; } }
 
-  .section-header { margin-bottom: 3rem; }
-  .section-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
-  .section-title {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.2; color: inherit; margin-bottom: 1rem;
-  }
+  .section-header { margin-bottom: 2.5rem; }
+  .section-eyebrow { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .section-title { font-family: Georgia, serif; font-style: italic; font-size: clamp(1.7rem,3.5vw,2.8rem); line-height: 1.2; color: inherit; margin-bottom: 1rem; }
   .gold-rule { width: 36px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
-  .section-desc { font-size: 0.9rem; line-height: 1.75; opacity: 0.72; max-width: 620px; }
+  .section-desc { font-size: 0.88rem; line-height: 1.78; opacity: 0.70; max-width: 600px; }
 
-  /* ── GRIDS ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
-  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } .grid-4 { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
-
-  /* ── TWO COL ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
   .two-col.a { grid-template-columns: 1fr 1.35fr; }
   .two-col.b { grid-template-columns: 1.35fr 1fr; }
-  @media (max-width: 800px) { .two-col, .two-col.a, .two-col.b { grid-template-columns: 1fr; gap: 2.5rem; } }
+  @media (max-width: 800px) { .two-col, .two-col.a, .two-col.b { grid-template-columns: 1fr; gap: 2rem; } }
 
-  /* ── GLASS STAT CARDS ── */
-  .glass-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
-  @media (max-width: 700px) { .glass-grid { grid-template-columns: 1fr 1fr; } }
-  .glass-card {
-    background: rgba(201,169,110,0.07);
-    border: 1px solid rgba(201,169,110,0.2);
-    padding: 2rem 1.2rem; text-align: center;
-  }
-  .glass-num {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(2rem, 3.2vw, 2.8rem); color: var(--gold); line-height: 1; margin-bottom: 0.4rem;
-  }
-  .glass-label { font-size: 0.64rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.52; line-height: 1.4; }
+  .divider { height: 1px; background: linear-gradient(to right,transparent,var(--border),transparent); }
+
+  /* ── STAT ROW ── */
+  .stat-row { display: flex; border: 1px solid var(--border); margin-top: 2rem; }
+  .stat-cell { flex: 1; padding: 1.1rem; text-align: center; border-right: 1px solid var(--border); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: Georgia, serif; font-style: italic; font-size: 1.7rem; color: var(--gold); line-height: 1; }
+  .stat-lbl { font-size: 0.54rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.48; margin-top: 0.2rem; color: var(--cream); }
+
+  /* ── QUOTE ── */
+  .quote-block { border-left: 2px solid var(--gold); padding: 1rem 1.6rem; margin: 1.8rem 0; }
+  .quote-block blockquote { font-family: Georgia, serif; font-style: italic; font-size: clamp(0.95rem,1.6vw,1.2rem); color: inherit; line-height: 1.65; margin-bottom: 0.6rem; }
+  .quote-block cite { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+  /* ── CALLOUT ── */
+  .callout { margin-top: 1.8rem; padding: 1.1rem 1.6rem; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .callout-label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; }
+  .callout-text { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: var(--cream); }
+
+  /* ── TAG ROW ── */
+  .tag-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+  .tag { font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); padding: 0.3rem 0.85rem; border: 1px solid rgba(201,169,110,0.28); }
+
+  /* ── GLASS CARDS ── */
+  .glass-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
+  @media (max-width: 600px) { .glass-grid { grid-template-columns: 1fr 1fr; } }
+  .glass-card { background: rgba(201,169,110,0.07); border: 1px solid rgba(201,169,110,0.2); padding: 1.8rem 1.2rem; text-align: center; }
+  .glass-num { font-family: Georgia, serif; font-style: italic; font-size: clamp(1.8rem,3vw,2.6rem); color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+  .glass-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.52; line-height: 1.4; color: var(--cream); }
 
   /* ── FOUNDER ── */
-  .founder-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
-  @media (max-width: 800px) { .founder-wrap { grid-template-columns: 1fr; } }
-  .founder-photo {
-    aspect-ratio: 4/5; overflow: hidden; position: relative;
-  }
+  .founder-photo { aspect-ratio: 4/5; overflow: hidden; }
   .founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .founder-quote { border-left: 2px solid var(--gold); padding: 1.2rem 1.8rem; margin: 2rem 0; }
-  .founder-quote blockquote {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(1rem,1.8vw,1.3rem); color: var(--cream); line-height: 1.65; margin-bottom: 0.7rem;
-  }
-  .founder-quote cite { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
-  /* ── AUDIENCE COLUMNS ── */
-  .aud-grid {
-    display: grid; grid-template-columns: repeat(3,1fr);
-    gap: 1px; background: rgba(201,169,110,0.18);
-  }
-  @media (max-width: 700px) { .aud-grid { grid-template-columns: 1fr; } }
-  .aud-col { background: var(--black); padding: 2.2rem 1.8rem; }
-  .aud-col-title { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-  .aud-item {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 0.95rem; color: var(--cream); opacity: 0.88;
-    padding: 0.38rem 0; border-bottom: 1px solid rgba(201,169,110,0.1);
-  }
+  /* ── AUDIENCE ── */
+  .aud-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(201,169,110,0.18); }
+  @media (max-width: 700px) { .aud-grid { grid-template-columns: 1fr; gap: 2px; } }
+  .aud-col { background: var(--black); padding: 2rem 1.5rem; }
+  .aud-col-title { font-size: 0.56rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .aud-item { font-family: Georgia, serif; font-style: italic; font-size: 0.92rem; color: var(--cream); opacity: 0.88; padding: 0.36rem 0; border-bottom: 1px solid rgba(201,169,110,0.1); }
   .aud-item:last-child { border-bottom: none; }
 
   /* ── COMMUNITY GRID ── */
-  .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.08); }
-  .community-cell { background: var(--white); padding: 2rem 1.8rem; }
-  .community-cell.dark { background: var(--black); }
-  .c-label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-  .c-title { font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: var(--black); }
-  .community-cell.dark .c-title { color: var(--cream); }
+  .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.1); }
+  .community-cell { background: var(--white); padding: 1.8rem 1.5rem; }
+  .community-cell.dark-cell { background: var(--black); }
+  .c-label { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .c-title { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: var(--black); }
+  .community-cell.dark-cell .c-title { color: var(--cream); }
 
-  /* ── PHOTO GRID ── */
-  .photo-grid-6 { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
-  @media (max-width: 700px) { .photo-grid-6 { grid-template-columns: 1fr 1fr; } }
+  /* ── PHOTO CELLS — no black corners, mobile safe ── */
   .photo-cell {
-    aspect-ratio: 4/3; overflow: hidden; position: relative; background: #111;
+    aspect-ratio: 4/3; overflow: hidden; position: relative;
+    background: #222; /* dark neutral, not pure black */
+    cursor: pointer;
   }
-  .photo-cell img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform 0.5s ease;
-  }
+  .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
   .photo-cell:hover img { transform: scale(1.04); }
-  .photo-badge {
-    position: absolute; bottom: 0.7rem; left: 0.7rem; z-index: 2;
-    background: rgba(28,28,28,0.82); padding: 0.3rem 0.75rem;
-    font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: rgba(201,169,110,0.9); backdrop-filter: blur(6px);
-  }
+  .photo-badge { position: absolute; bottom: 0.6rem; left: 0.6rem; z-index: 2; background: rgba(28,28,28,0.82); padding: 0.28rem 0.7rem; font-size: 0.54rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(201,169,110,0.9); backdrop-filter: blur(6px); pointer-events: none; }
+  /* Hover hint overlay */
+  .lb-hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0); transition: background 0.25s; z-index: 3; pointer-events: none; }
+  .photo-cell:hover .lb-hint { background: rgba(0,0,0,0.25); }
+  .lb-hint::after { content: '⊕'; font-size: 1.6rem; color: rgba(201,169,110,0); transition: color 0.25s; }
+  .photo-cell:hover .lb-hint::after { color: rgba(201,169,110,0.8); }
+
+  /* ── PHOTO GRIDS ── */
+  .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; }
+  @media (max-width: 700px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
+  /* Orphan last cell spans full width on mobile */
+  @media (max-width: 700px) { .photo-grid .photo-cell:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%; } }
+
+  .tour-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 5px; }
+  .tour-row .photo-cell { aspect-ratio: 16/7; }
+  @media (max-width: 600px) { .tour-row { grid-template-columns: 1fr; } .tour-row .photo-cell { aspect-ratio: 4/3; } }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.96); align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lb-img { max-width: 90vw; max-height: 88svh; object-fit: contain; display: block; }
+  .lb-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: 1px solid rgba(201,169,110,0.4); color: var(--gold); font-size: 1.2rem; width: 2.4rem; height: 2.4rem; cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 10; }
+  .lb-close:hover { background: rgba(201,169,110,0.15); }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(28,28,28,0.75); border: 1px solid var(--border); color: var(--gold); font-size: 1.5rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 10; }
+  .lb-nav:hover { background: rgba(28,28,28,0.95); }
+  .lb-prev { left: 1rem; } .lb-next { right: 1rem; }
+  .lb-counter { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,169,110,0.55); white-space: nowrap; }
+  @media (max-width: 550px) { .lb-prev { left: 0.4rem; } .lb-next { right: 0.4rem; } }
+
+  /* ── CAROUSEL ── */
+  .carousel-section { background: var(--black); padding: var(--gap) 0; overflow: hidden; }
+  .carousel-header { padding: 0 clamp(1.2rem,5vw,5.5rem); margin-bottom: 2rem; }
+  .carousel-wrapper { overflow: hidden; position: relative; }
+  .carousel-wrapper::before, .carousel-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 10; pointer-events: none; }
+  .carousel-wrapper::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+  .carousel-wrapper::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+  .carousel-track { display: flex; gap: 10px; animation: scrollCarousel 50s linear infinite; width: max-content; }
+  .carousel-track:hover { animation-play-state: paused; }
+  @keyframes scrollCarousel { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .carousel-item { flex-shrink: 0; width: clamp(180px,20vw,280px); aspect-ratio: 2/3; overflow: hidden; cursor: pointer; position: relative; background: #1a1a1a; }
+  .carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .carousel-item:hover img { transform: scale(1.04); }
+
+  /* ── BATIK ── */
+  .batik-section { background: var(--black); padding: var(--gap) clamp(1.2rem,5vw,5.5rem); }
+  .batik-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 2rem; }
+  @media (max-width: 700px) { .batik-grid { grid-template-columns: 1fr; gap: 5px; } }
+  .batik-cell { aspect-ratio: 2/3; overflow: hidden; position: relative; cursor: pointer; background: #1a1a1a; }
+  .batik-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .batik-cell:hover img { transform: scale(1.03); }
+  .batik-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.2rem 1.2rem; background: linear-gradient(transparent, rgba(28,28,28,0.72)); pointer-events: none; }
+  .batik-tag { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
 
   /* ── VALUES TABLE ── */
   .values-wrap { border: 1px solid rgba(201,169,110,0.22); overflow: hidden; }
-  .values-head {
-    display: grid; grid-template-columns: 1fr 1px 1fr;
-    background: rgba(201,169,110,0.09);
-  }
-  .values-head-cell {
-    padding: 1rem 2rem; text-align: center;
-    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
-  }
-  .val-div { background: rgba(201,169,110,0.28); }
+  .values-head { display: grid; grid-template-columns: 1fr 1px 1fr; background: rgba(201,169,110,0.09); }
+  .values-head-cell { padding: 0.9rem 1.5rem; text-align: center; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+  .val-div { background: rgba(201,169,110,0.25); }
   .values-row { display: grid; grid-template-columns: 1fr 1px 1fr; border-top: 1px solid rgba(201,169,110,0.1); }
-  .values-cell {
-    padding: 0.9rem 2rem; text-align: center;
-    font-family: Georgia, serif; font-style: italic; font-size: 0.95rem; color: var(--cream);
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-  }
+  .values-cell { padding: 0.85rem 1.5rem; text-align: center; font-family: Georgia, serif; font-style: italic; font-size: 0.9rem; color: var(--cream); display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
   .val-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  @media (max-width: 500px) { .values-cell { font-size: 0.78rem; padding: 0.7rem 0.8rem; } }
 
   /* ── EVENT CARDS ── */
   .event-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
   @media (max-width: 900px) { .event-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .event-grid { grid-template-columns: 1fr; } }
-  .event-card { padding: 2rem 1.6rem; border: 1px solid rgba(0,0,0,0.09); background: var(--white); }
-  .event-label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-  .event-title { font-family: Georgia, serif; font-style: italic; font-size: 1.1rem; color: var(--black); margin-bottom: 0.6rem; line-height: 1.3; }
-  .event-items { font-size: 0.76rem; color: var(--black); opacity: 0.52; line-height: 1.8; }
+  @media (max-width: 550px) { .event-grid { grid-template-columns: 1fr; } }
+  .event-card { padding: 1.8rem 1.5rem; border: 1px solid rgba(0,0,0,0.09); background: var(--white); }
+  .event-label { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .event-title { font-family: Georgia, serif; font-style: italic; font-size: 1.05rem; color: var(--black); margin-bottom: 0.5rem; line-height: 1.3; }
+  .event-items { font-size: 0.74rem; color: var(--black); opacity: 0.52; line-height: 1.8; }
 
-  /* ── SOCIAL STATS ── */
-  .social-hero { text-align: center; margin-bottom: 3rem; }
-  .social-big {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(4.5rem, 9vw, 7rem); line-height: 1;
-  }
-  .social-desc { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.45; margin-top: 0.5rem; }
+  /* ── COMMUNITY STATEMENT (Digital section) ── */
+  .community-statement { text-align: center; padding: 0 clamp(1rem,5vw,5rem) 3rem; }
+  .cs-big { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,5vw,3.8rem); color: var(--white); line-height: 1.2; margin-bottom: 1.2rem; }
+  .cs-sub { font-size: 0.86rem; color: var(--cream); opacity: 0.52; max-width: 540px; margin: 0 auto; line-height: 1.75; }
+
+  /* ── SOCIAL STRIP ── */
   .social-three { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(201,169,110,0.2); }
-  @media (max-width: 600px) { .social-three { grid-template-columns: 1fr; } }
-  .s-cell { background: var(--black); padding: 2rem 1.5rem; text-align: center; }
-  .s-num { font-family: Georgia, serif; font-style: italic; font-size: 2.2rem; color: var(--gold); display: block; }
-  .s-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.48; margin-top: 0.3rem; }
+  @media (max-width: 550px) { .social-three { grid-template-columns: 1fr; gap: 2px; } }
+  .s-cell { background: var(--black); padding: 1.8rem 1.5rem; text-align: center; }
+  .s-num { font-family: Georgia, serif; font-style: italic; font-size: 2rem; color: var(--gold); display: block; }
+  .s-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.45; margin-top: 0.3rem; color: var(--cream); }
+  .strategy-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(201,169,110,0.14); margin-top: 1px; }
+  @media (max-width: 550px) { .strategy-strip { grid-template-columns: 1fr 1fr; gap: 2px; } }
+  .strategy-cell { background: var(--black); padding: 1.3rem; text-align: center; }
+  .strategy-label { font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .strategy-text { font-size: 0.78rem; opacity: 0.6; line-height: 1.5; color: var(--cream); }
 
   /* ── HUB CARDS ── */
   .hub-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
   @media (max-width: 900px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 500px) { .hub-grid { grid-template-columns: 1fr; } }
   .hub-card { overflow: hidden; border: 1px solid rgba(0,0,0,0.09); background: var(--white); }
-  .hub-photo { width: 100%; height: 160px; object-fit: cover; display: block; }
-  .hub-body { padding: 1.4rem; }
-  .hub-label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-  .hub-title { font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: var(--black); margin-bottom: 0.3rem; }
-  .hub-detail { font-size: 0.73rem; color: var(--black); opacity: 0.55; line-height: 1.55; }
+  .hub-photo { width: 100%; height: 150px; object-fit: cover; display: block; }
+  .hub-body { padding: 1.3rem; }
+  .hub-label { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .hub-title { font-family: Georgia, serif; font-style: italic; font-size: 0.98rem; color: var(--black); margin-bottom: 0.3rem; }
+  .hub-detail { font-size: 0.72rem; color: var(--black); opacity: 0.55; line-height: 1.55; }
 
-  /* ── AWARD CARD ── */
+  /* ── CREDENTIALS ── */
   .cred-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.2rem; }
-  @media (max-width: 600px) { .cred-grid { grid-template-columns: 1fr; } }
-  .cred-card {
-    padding: 1.8rem; background: rgba(201,169,110,0.07);
-    border: 1px solid rgba(201,169,110,0.2);
-    display: flex; flex-direction: column; gap: 0.5rem;
-  }
-  .cred-year { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-  .cred-title { font-family: Georgia, serif; font-style: italic; font-size: 1.05rem; color: var(--cream); line-height: 1.3; }
-  .cred-body { font-size: 0.78rem; opacity: 0.58; line-height: 1.55; }
+  @media (max-width: 550px) { .cred-grid { grid-template-columns: 1fr; } }
+  .cred-card { padding: 1.8rem; background: rgba(201,169,110,0.07); border: 1px solid rgba(201,169,110,0.2); display: flex; flex-direction: column; gap: 0.5rem; }
+  .cred-year { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .cred-title { font-family: Georgia, serif; font-style: italic; font-size: 1.02rem; color: var(--cream); line-height: 1.3; }
+  .cred-body { font-size: 0.76rem; opacity: 0.58; line-height: 1.55; color: var(--cream); }
 
-  /* ── BIG STATEMENT SECTION ── */
-  .statement-section {
-    background: var(--black); padding: var(--gap) clamp(1.5rem,5vw,6rem);
-    position: relative; overflow: hidden;
-  }
-  .statement-photo-bg {
-    position: absolute; inset: 0;
-    background-image: url('LS Photos/3.jpg');
-    background-size: cover; background-position: center;
-  }
-  .statement-photo-bg::after {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(28,28,28,0.88);
-  }
-  .statement-content { position: relative; z-index: 1; }
+  /* ── LEASING BRIEF ── */
+  .leasing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(0,0,0,0.08); margin-top: 2rem; }
+  @media (max-width: 600px) { .leasing-grid { grid-template-columns: 1fr; gap: 2px; background: rgba(0,0,0,0.05); } }
+  .leasing-cell { background: var(--white); padding: 2rem 1.8rem; }
+  .leasing-cell.highlight { background: var(--black); }
+  .lc-label { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lc-title { font-family: Georgia, serif; font-style: italic; font-size: 1.05rem; color: var(--black); margin-bottom: 0.6rem; }
+  .leasing-cell.highlight .lc-title { color: var(--cream); }
+  .lc-spec { display: flex; flex-direction: column; gap: 0.45rem; }
+  .lc-spec span { font-size: 0.76rem; color: var(--black); opacity: 0.7; padding-left: 1rem; position: relative; line-height: 1.55; }
+  .lc-spec span::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+  .leasing-cell.highlight .lc-spec span { color: var(--cream); opacity: 0.65; }
 
   /* ── CHECK GRID ── */
-  .check-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; margin-top: 2rem; }
-  @media (max-width: 800px) { .check-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 500px) { .check-grid { grid-template-columns: 1fr; } }
-  .check-item {
-    display: flex; align-items: flex-start; gap: 0.8rem;
-    padding: 1rem 1.2rem;
-    background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.14);
-  }
-  .check-icon { color: var(--gold); font-size: 0.82rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .check-text { font-size: 0.8rem; color: var(--cream); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4; }
+  .check-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; margin-top: 1.8rem; }
+  @media (max-width: 750px) { .check-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 450px) { .check-grid { grid-template-columns: 1fr; } }
+  .check-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.1rem; background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.14); }
+  .check-icon { color: var(--gold); font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .check-text { font-size: 0.78rem; color: var(--cream); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4; }
 
-  /* ── CLOSING QUOTE ── */
-  .closing-quote {
-    margin-top: 2.5rem; padding: 1.8rem 2.2rem;
-    border: 1px solid rgba(201,169,110,0.25);
-    background: rgba(28,28,28,0.65); backdrop-filter: blur(12px);
-    max-width: 720px;
-  }
-  .closing-quote p {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(0.95rem,1.6vw,1.2rem); color: var(--cream); line-height: 1.8;
-  }
+  /* ── STATEMENT SECTION ── */
+  .statement-section { background: var(--black); padding: var(--gap) clamp(1.2rem,5vw,5.5rem); position: relative; overflow: hidden; }
+  .statement-photo-bg { position: absolute; inset: 0; background-image: url('LS Photos/Batik 3.jpg'); background-size: cover; background-position: center; }
+  .statement-photo-bg::after { content:''; position:absolute; inset:0; background: rgba(28,28,28,0.88); }
+  .statement-content { position: relative; z-index: 1; }
+  .closing-quote { margin-top: 2.2rem; padding: 1.6rem 2rem; border: 1px solid rgba(201,169,110,0.22); background: rgba(28,28,28,0.65); backdrop-filter: blur(12px); max-width: 700px; }
+  .closing-quote p { font-family: Georgia, serif; font-style: italic; font-size: clamp(0.92rem,1.5vw,1.15rem); color: var(--cream); line-height: 1.82; }
 
-  /* ── SECTION DIVIDER ── */
-  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); }
-
-  /* ── COLOPHON / FOOTER ── */
-  .colophon {
-    background: var(--black); padding: 4rem clamp(1.5rem,5vw,6rem);
-    text-align: center; border-top: 1px solid var(--border);
-  }
-  .colophon .cl-brand { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,4vw,3.5rem); color: var(--white); margin-bottom: 0.5rem; }
-  .colophon .cl-tag { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 3rem; }
-  .contact-grid { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0 3rem; }
-  .ci-type { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-  .ci-val { font-size: 0.92rem; color: var(--cream); opacity: 0.85; }
-  .colophon .cl-note { font-size: 0.62rem; letter-spacing: 0.18em; color: var(--mid); text-transform: uppercase; line-height: 1.8; }
-
-  /* ── INLINE QUOTE BLOCK ── */
-  .quote-block { border-left: 2px solid var(--gold); padding: 1rem 1.8rem; margin: 2rem 0; }
-  .quote-block blockquote {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: clamp(1rem,1.8vw,1.3rem); color: inherit; line-height: 1.65; margin-bottom: 0.6rem;
-  }
-  .quote-block cite { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-
-  /* ── TAGS ROW ── */
-  .tag-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.5rem; }
-  .tag {
-    font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); padding: 0.32rem 0.9rem; border: 1px solid rgba(201,169,110,0.3);
-  }
-
-  /* ── INLINE CALLOUT ── */
-  .callout {
-    margin-top: 2rem; padding: 1.2rem 1.8rem;
-    border: 1px solid var(--border);
-    display: inline-flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-  }
-  .callout-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; }
-  .callout-text { font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: var(--cream); }
-
-  /* ── STAT ROW ── */
-  .stat-row { display: flex; gap: 0; border: 1px solid var(--border); margin-top: 2rem; }
-  .stat-cell { flex: 1; padding: 1.2rem; text-align: center; border-right: 1px solid var(--border); }
-  .stat-cell:last-child { border-right: none; }
-  .stat-num { font-family: Georgia, serif; font-style: italic; font-size: 1.8rem; color: var(--gold); line-height: 1; }
-  .stat-lbl { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-top: 0.2rem; }
-
-  /* ── SOCIAL STRATEGY STRIP ── */
-  .strategy-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(201,169,110,0.15); margin-top: 1.5rem; }
-  @media (max-width: 600px) { .strategy-strip { grid-template-columns: 1fr 1fr; } }
-  .strategy-cell { background: var(--black); padding: 1.4rem; text-align: center; }
-  .strategy-label { font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-  .strategy-text { font-size: 0.8rem; opacity: 0.62; line-height: 1.5; }
+  /* ── FOOTER ── */
+  .colophon { background: var(--black); padding: 4rem clamp(1.2rem,5vw,5.5rem); text-align: center; border-top: 1px solid var(--border); }
+  .cl-brand { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,4vw,3.5rem); color: var(--white); margin-bottom: 0.5rem; }
+  .cl-tag { font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 3rem; }
+  .contact-grid { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0 3rem; }
+  .ci-type { font-size: 0.56rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .ci-val { font-size: 0.9rem; color: var(--cream); opacity: 0.85; }
+  .cl-note { font-size: 0.6rem; letter-spacing: 0.16em; color: var(--mid); text-transform: uppercase; line-height: 1.8; }
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
 
 <!-- NAV -->
 <nav class="top-nav">
@@ -392,16 +323,14 @@
   <nav class="nav-links">
     <a href="#story">Story</a>
     <a href="#community">Community</a>
+    <a href="#collection">Collection</a>
     <a href="#apw">Why APW</a>
-    <a href="#activation">Activation</a>
-    <a href="#credentials">Credentials</a>
-    <a href="#partnership">Partnership</a>
+    <a href="#leasing">Leasing</a>
+    <a href="#contact">Contact</a>
   </nav>
 </nav>
 
-<!-- ══════════════════════════════════
-     HERO
-══════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-photo"></div>
   <div class="hero-content">
@@ -409,28 +338,22 @@
     <h1 class="reveal d1">Lesley Sun</h1>
     <div class="hero-tagline reveal d2 gold-shimmer">Fashion. &nbsp;Community. &nbsp;Culture.</div>
     <div class="hero-divider reveal d2"></div>
-    <p class="hero-desc reveal d3">
-      Building one of Malaysia's most engaged female lifestyle communities through fashion, experiences and meaningful connections.
-    </p>
+    <p class="hero-desc reveal d3">Building one of Malaysia's most engaged female lifestyle communities through fashion, experiences and meaningful connections.</p>
     <div class="pill reveal d4">Seeking a Long-Term Community Home · APW Bangsar</div>
   </div>
-  <div class="hero-corner">
-    Confidential · For APW Leasing Team<br>www.lesleysun.com
-  </div>
+  <div class="hero-corner">Confidential · APW Leasing Team<br>www.lesleysun.com</div>
 </section>
 
 <!-- PROOF STRIP -->
 <div class="proof-strip">
   <div class="proof-item"><div class="proof-num">9+</div><div class="proof-label">Years in Market</div></div>
-  <div class="proof-item"><div class="proof-num">121K+</div><div class="proof-label">Instagram Followers</div></div>
-  <div class="proof-item"><div class="proof-num">4.8%</div><div class="proof-label">Engagement Rate</div></div>
   <div class="proof-item"><div class="proof-num">MY · SG</div><div class="proof-label">Markets</div></div>
   <div class="proof-item"><div class="proof-num">85%</div><div class="proof-label">Female Audience</div></div>
+  <div class="proof-item"><div class="proof-num">100%</div><div class="proof-label">Organic Community</div></div>
+  <div class="proof-item"><div class="proof-num">2017</div><div class="proof-label">Est. Malaysia</div></div>
 </div>
 
-<!-- ══════════════════════════════════
-     SECTION — BRAND STORY
-══════════════════════════════════ -->
+<!-- BRAND STORY -->
 <section class="section dark" id="story">
   <div class="two-col b">
     <div>
@@ -438,15 +361,11 @@
         <div class="section-eyebrow reveal">Brand Story</div>
         <div class="section-title reveal d1">A Brand Built<br>on Belonging</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2">
-          For nearly a decade, Lesley Sun has cultivated a loyal following of women who don't simply purchase clothing — they participate in a lifestyle built around confidence, self-expression and community.
-        </p>
+        <p class="section-desc reveal d2" style="color:var(--cream);">For nearly a decade, Lesley Sun has cultivated a loyal following of women who don't simply purchase clothing — they participate in a lifestyle built around confidence, self-expression and community.</p>
       </div>
-      <p style="font-size:0.9rem;line-height:1.78;opacity:0.68;max-width:560px;" class="reveal d3">
-        What began as a fashion label has evolved into something far more significant: a trusted space where Malaysian women find pieces that feel exactly right, and people who feel exactly like them.
-      </p>
+      <p style="font-size:0.88rem;line-height:1.8;opacity:0.65;max-width:520px;color:var(--cream);" class="reveal d3">What began as a fashion label has evolved into something far more significant: a trusted space where Malaysian women find pieces that feel exactly right, and people who feel exactly like them.</p>
       <div class="quote-block reveal d4">
-        <blockquote>"I wanted to create more than a brand. I wanted to create a home for women to come back to."</blockquote>
+        <blockquote style="color:var(--cream);">"I wanted to create more than a brand. I wanted to create a home for women to come back to."</blockquote>
         <cite>— Lesley Sun, Founder</cite>
       </div>
       <div class="stat-row reveal d4">
@@ -455,23 +374,19 @@
         <div class="stat-cell"><div class="stat-num">MY · SG</div><div class="stat-lbl">Markets</div></div>
       </div>
     </div>
-    <div class="founder-photo reveal d2">
-      <img src="LS%20Photos/Founder.jpg" alt="Lesley Sun, Founder">
-    </div>
+    <div class="founder-photo reveal d2"><img src="LS%20Photos/Founder.jpg" alt="Lesley Sun, Founder"></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════
-     SECTION — THE AUDIENCE WE BRING
-══════════════════════════════════ -->
+<!-- AUDIENCE -->
 <section class="section dark">
   <div class="section-header">
     <div class="section-eyebrow reveal">Who Comes With Us</div>
-    <div class="section-title reveal d1">Not Just Followers.<br>A Premium Female Audience.</div>
+    <div class="section-title reveal d1">Not Just Customers.<br>A Premium Female Audience.</div>
     <div class="gold-rule reveal d2"></div>
-    <p class="section-desc reveal d2">This is what leasing teams want. Women with spending power who show up — not once, but repeatedly.</p>
+    <p class="section-desc reveal d2" style="color:var(--cream);">Women with real spending power who return again and again — not just to shop, but to belong.</p>
   </div>
   <div class="aud-grid reveal d2">
     <div class="aud-col">
@@ -493,142 +408,151 @@
       <div class="aud-item">Beauty</div>
     </div>
     <div class="aud-col">
-      <div class="aud-col-title">Repeat Visitors Who</div>
-      <div class="aud-item">Attend launches</div>
-      <div class="aud-item">Join styling sessions</div>
-      <div class="aud-item">Come to workshops</div>
-      <div class="aud-item">Show up to gatherings</div>
+      <div class="aud-col-title">They Show Up To</div>
+      <div class="aud-item">Collection launches</div>
+      <div class="aud-item">Styling sessions</div>
+      <div class="aud-item">Community workshops</div>
+      <div class="aud-item">Festive gatherings</div>
       <div class="aud-item">Bring their friends</div>
       <div class="aud-item">Come back, every time</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     SECTION — LESLEY SUN COMMUNITY
-══════════════════════════════════ -->
+<!-- COMMUNITY -->
 <section class="section cream" id="community">
   <div class="two-col">
     <div>
       <div class="section-header">
         <div class="section-eyebrow reveal">More Than Customers</div>
-        <div class="section-title reveal d1">We Don't Have Followers.<br>We Have People Who Show Up.</div>
+        <div class="section-title reveal d1">We Have People<br>Who Show Up.</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2">
-          Over the years, Lesley Sun has cultivated a highly engaged community of women who actively participate in events, styling sessions, launches and seasonal experiences.
-        </p>
+        <p class="section-desc reveal d2">Our community isn't measured in numbers. It's measured in the women who clear their calendars for Lesley Sun events, bring their circles along, and return season after season — not to shop, but to belong.</p>
       </div>
-      <p style="font-size:0.88rem;line-height:1.78;opacity:0.7;max-width:540px;" class="reveal d3">
-        These aren't passive consumers. They're women who clear their calendars for Lesley Sun events, bring their circle along, and return season after season — not just to shop, but to belong.
-      </p>
-      <div class="quote-block reveal d4" style="border-left-color:var(--black);">
-        <blockquote style="color:var(--black);">"Great spaces are not built around transactions. They are built around experiences, conversations and communities."</blockquote>
+      <p style="font-size:0.88rem;line-height:1.8;opacity:0.68;max-width:520px;" class="reveal d3">They participate in launches, styling sessions, workshops and festive gatherings. They are the most powerful asset any retail space can have: women who are already engaged, already loyal, always showing up.</p>
+      <div class="quote-block reveal d4" style="border-left-color:rgba(28,28,28,0.4);">
+        <blockquote>"Great spaces are not built around transactions. They are built around experiences, conversations and communities."</blockquote>
       </div>
     </div>
     <div class="community-grid reveal d2">
-      <div class="community-cell">
-        <div class="c-label">Community</div>
-        <div class="c-title">Styling Workshops</div>
-      </div>
-      <div class="community-cell">
-        <div class="c-label">Community</div>
-        <div class="c-title">Collection Launches</div>
-      </div>
-      <div class="community-cell">
-        <div class="c-label">Community</div>
-        <div class="c-title">Founder Meetups</div>
-      </div>
-      <div class="community-cell">
-        <div class="c-label">Community</div>
-        <div class="c-title">Festive Gatherings</div>
-      </div>
-      <div class="community-cell">
-        <div class="c-label">Community</div>
-        <div class="c-title">Customer Events</div>
-      </div>
-      <div class="community-cell dark">
-        <div class="c-label">Always</div>
-        <div class="c-title" style="color:var(--cream);">People who show up.</div>
-      </div>
+      <div class="community-cell"><div class="c-label">Community</div><div class="c-title">Styling Workshops</div></div>
+      <div class="community-cell"><div class="c-label">Community</div><div class="c-title">Collection Launches</div></div>
+      <div class="community-cell"><div class="c-label">Community</div><div class="c-title">Founder Meetups</div></div>
+      <div class="community-cell"><div class="c-label">Community</div><div class="c-title">Festive Gatherings</div></div>
+      <div class="community-cell"><div class="c-label">Community</div><div class="c-title">Customer Events</div></div>
+      <div class="community-cell dark-cell"><div class="c-label">Always</div><div class="c-title">People who show up.</div></div>
     </div>
   </div>
 </section>
 
-<!-- COMMUNITY IN ACTION — PHOTO GRID -->
+<!-- COMMUNITY PHOTOS -->
 <section class="section dark" style="padding-top:0;">
   <div class="section-header">
     <div class="section-eyebrow reveal">Real Moments</div>
     <div class="section-title reveal d1">A Community That Moves Together</div>
     <div class="gold-rule reveal d2"></div>
   </div>
-  <div class="photo-grid-6 reveal d2">
-    <div class="photo-cell">
-      <img src="LS%20Photos/Workshop%201.jpg" alt="Styling Workshop">
-      <div class="photo-badge">Styling Workshop</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Workshop%202.jpg" alt="Community Session">
-      <div class="photo-badge">Community Session</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Workshop%203.jpg" alt="Founder Session">
-      <div class="photo-badge">Founder Session</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Worshop%204.jpg" alt="Workshop">
-      <div class="photo-badge">Workshop</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Social%20Proof.jpg" alt="Community Gathering">
-      <div class="photo-badge">Community Gathering</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Social%20Proof%202.jpg" alt="Launch Night">
-      <div class="photo-badge">Launch Night</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Picture%201.jpg" alt="Brand Moment">
-      <div class="photo-badge">Brand Moment</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/Social%20Influences%20in%20LSKL.jpg" alt="Social Influences">
-      <div class="photo-badge">Social Influences · KL</div>
-    </div>
-    <div class="photo-cell">
-      <img src="LS%20Photos/IG.jpg" alt="Instagram Community">
-      <div class="photo-badge">Instagram Community</div>
-    </div>
+  <div class="photo-grid reveal d2">
+    <div class="photo-cell" data-lb="LS%20Photos/Workshop%201.jpg" data-label="Styling Workshop"><img src="LS%20Photos/Workshop%201.jpg" alt="Styling Workshop" loading="lazy"><div class="photo-badge">Styling Workshop</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Workshop%202.jpg" data-label="Community Session"><img src="LS%20Photos/Workshop%202.jpg" alt="Community Session" loading="lazy"><div class="photo-badge">Community Session</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Workshop%203.jpg" data-label="Founder Session"><img src="LS%20Photos/Workshop%203.jpg" alt="Founder Session" loading="lazy"><div class="photo-badge">Founder Session</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Worshop%204.jpg" data-label="Workshop"><img src="LS%20Photos/Worshop%204.jpg" alt="Workshop" loading="lazy"><div class="photo-badge">Workshop</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Social%20Proof.jpg" data-label="Community Gathering"><img src="LS%20Photos/Social%20Proof.jpg" alt="Community Gathering" loading="lazy"><div class="photo-badge">Community Gathering</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Social%20Proof%202.jpg" data-label="Launch Night"><img src="LS%20Photos/Social%20Proof%202.jpg" alt="Launch Night" loading="lazy"><div class="photo-badge">Launch Night</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Batik%201.jpg" data-label="Brand Moment"><img src="LS%20Photos/Batik%201.jpg" alt="Brand Moment" loading="lazy"><div class="photo-badge">Brand Moment</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Social%20Influences%20in%20LSKL.jpg" data-label="Social Influences · KL"><img src="LS%20Photos/Social%20Influences%20in%20LSKL.jpg" alt="Social Influences KL" loading="lazy"><div class="photo-badge">Social Influences · KL</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/IG.jpg" data-label="Instagram Community"><img src="LS%20Photos/IG.jpg" alt="Instagram Community" loading="lazy"><div class="photo-badge">Instagram Community</div><div class="lb-hint"></div></div>
   </div>
-
-  <!-- Tour Showcases -->
-  <div style="margin-top:6px;" class="reveal d3">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-      <div class="photo-cell" style="aspect-ratio:16/7;">
-        <img src="LS%20Photos/Tour%20Showcase%20in%20JB.jpg" alt="Tour Showcase Johor Bahru">
-        <div class="photo-badge">Tour Showcase · Johor Bahru</div>
-      </div>
-      <div class="photo-cell" style="aspect-ratio:16/7;">
-        <img src="LS%20Photos/Tour%20Showcase%20in%20PG.jpg" alt="Tour Showcase Penang">
-        <div class="photo-badge">Tour Showcase · Penang</div>
-      </div>
-    </div>
+  <div class="tour-row reveal d3">
+    <div class="photo-cell" data-lb="LS%20Photos/Tour%20Showcase%20in%20JB.jpg" data-label="Tour Showcase · Johor Bahru"><img src="LS%20Photos/Tour%20Showcase%20in%20JB.jpg" alt="Tour JB" loading="lazy"><div class="photo-badge">Tour Showcase · Johor Bahru</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" data-lb="LS%20Photos/Tour%20Showcase%20in%20PG.jpg" data-label="Tour Showcase · Penang"><img src="LS%20Photos/Tour%20Showcase%20in%20PG.jpg" alt="Tour Penang" loading="lazy"><div class="photo-badge">Tour Showcase · Penang</div><div class="lb-hint"></div></div>
   </div>
-
-  <div class="tag-row reveal d3">
-    <span class="tag">Styling Workshops</span>
-    <span class="tag">Launch Nights</span>
-    <span class="tag">Festive Events</span>
-    <span class="tag">Tour Showcases</span>
-    <span class="tag">Founder Conversations</span>
-    <span class="tag">Community Markets</span>
+  <div class="tag-row reveal d4">
+    <span class="tag">Styling Workshops</span><span class="tag">Launch Nights</span><span class="tag">Festive Events</span>
+    <span class="tag">Tour Showcases</span><span class="tag">Founder Conversations</span><span class="tag">Community Markets</span>
   </div>
 </section>
 
+<!-- PRODUCT CAROUSEL -->
+<section class="carousel-section" id="collection">
+  <div class="carousel-header">
+    <div class="section-eyebrow reveal" style="color:var(--gold);">The Collection</div>
+    <div class="section-title reveal d1" style="color:var(--white);">Contemporary Womenswear<br>for the Modern Malaysian Woman</div>
+    <div class="gold-rule reveal d2"></div>
+    <p class="section-desc reveal d2" style="color:var(--cream);">Elevated essentials, timeless silhouettes, and design-led fashion. Click any piece to view full size. Hover to pause.</p>
+  </div>
+  <div class="carousel-wrapper reveal d2">
+    <div class="carousel-track">
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4494.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4494.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4580.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4580.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4593.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4593.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4638.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4638.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4747.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4747.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4800.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4800.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4838.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4838.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4904.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4904.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF4994.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF4994.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5070.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5070.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5093.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5093.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5181.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5181.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5403.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5403.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5444.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5444.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5463.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5463.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5488.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5488.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5618.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5618.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5650.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5650.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5717.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5717.jpg" alt="Collection" loading="lazy"></div>
+      <div class="carousel-item" data-lb="LS%20Photos/Product%20Showcase/DSCF5761.jpg"><img src="LS%20Photos/Product%20Showcase/DSCF5761.jpg" alt="Collection" loading="lazy"></div>
+      <!-- Duplicate for seamless loop (aria-hidden) -->
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4494.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4580.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4593.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4638.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4747.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4800.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4838.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4904.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF4994.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5070.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5093.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5181.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5403.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5444.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5463.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5488.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5618.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5650.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5717.jpg" alt="" loading="lazy"></div>
+      <div class="carousel-item" aria-hidden="true"><img src="LS%20Photos/Product%20Showcase/DSCF5761.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BATIK INSPIRED CHEONGSAM -->
+<div class="batik-section">
+  <div class="two-col a">
+    <div>
+      <div class="section-eyebrow reveal" style="color:var(--gold);">Localised Heritage</div>
+      <div class="section-title reveal d1" style="color:var(--white);">Batik-Inspired<br>Cheongsam</div>
+      <div class="gold-rule reveal d2"></div>
+      <p class="section-desc reveal d2" style="color:var(--cream);">Where Malaysian heritage meets contemporary design. Lesley Sun's batik-inspired cheongsam collection draws from Malaysia's rich batik tradition — reinterpreted through a modern, wearable lens that speaks to both cultural pride and global aesthetics.</p>
+      <p style="font-size:0.86rem;line-height:1.8;opacity:0.6;max-width:460px;color:var(--cream);margin-top:1rem;" class="reveal d3">This is fashion that is distinctly Malaysian and deeply meaningful — the kind of locally rooted design identity that resonates with APW's creative, culturally aware community.</p>
+      <div class="callout reveal d4">
+        <span class="callout-label">Design Identity</span>
+        <span class="callout-text">Malaysian roots. Contemporary soul.</span>
+      </div>
+    </div>
+    <div class="batik-grid reveal d2">
+      <div class="batik-cell" data-lb="LS%20Photos/Batik%201.jpg" data-label="Batik Collection I"><img src="LS%20Photos/Batik%201.jpg" alt="Batik Cheongsam I" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection I</div></div><div class="lb-hint"></div></div>
+      <div class="batik-cell" data-lb="LS%20Photos/Batik%202.jpg" data-label="Batik Collection II"><img src="LS%20Photos/Batik%202.jpg" alt="Batik Cheongsam II" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection II</div></div><div class="lb-hint"></div></div>
+      <div class="batik-cell" data-lb="LS%20Photos/Batik%203.jpg" data-label="Batik Collection III"><img src="LS%20Photos/Batik%203.jpg" alt="Batik Cheongsam III" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection III</div></div><div class="lb-hint"></div></div>
+    </div>
+  </div>
+</div>
+
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════
-     SECTION — WHY APW × LESLEY SUN
-══════════════════════════════════ -->
+<!-- WHY APW × LESLEY SUN -->
 <section class="section dark" id="apw">
   <div class="two-col">
     <div>
@@ -636,99 +560,45 @@
         <div class="section-eyebrow reveal">Shared Values</div>
         <div class="section-title reveal d1">APW Has Become One of KL's Most Recognisable Creative Destinations.</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2">
-          Lesley Sun shares the same belief: great spaces are not built around transactions. They are built around experiences, conversations and communities.
-        </p>
+        <p class="section-desc reveal d2" style="color:var(--cream);">Lesley Sun shares the same belief: great spaces are not built around transactions. They are built around experiences, conversations and communities.</p>
       </div>
-      <div class="callout reveal d3" style="border-color:var(--border);">
+      <div class="callout reveal d3">
         <span class="callout-label">The Alignment</span>
         <span class="callout-text">Two community-first brands. One shared home.</span>
       </div>
     </div>
     <div class="values-wrap reveal d2">
-      <div class="values-head">
-        <div class="values-head-cell">APW</div>
-        <div class="val-div"></div>
-        <div class="values-head-cell">Lesley Sun</div>
-      </div>
-      <div class="values-row">
-        <div class="values-cell"><span class="val-dot"></span>Community</div>
-        <div class="val-div"></div>
-        <div class="values-cell"><span class="val-dot"></span>Community</div>
-      </div>
-      <div class="values-row">
-        <div class="values-cell"><span class="val-dot"></span>Culture</div>
-        <div class="val-div"></div>
-        <div class="values-cell"><span class="val-dot"></span>Modern Asian Identity</div>
-      </div>
-      <div class="values-row">
-        <div class="values-cell"><span class="val-dot"></span>Creativity</div>
-        <div class="val-div"></div>
-        <div class="values-cell"><span class="val-dot"></span>Design-Led Fashion</div>
-      </div>
-      <div class="values-row">
-        <div class="values-cell"><span class="val-dot"></span>Experiences</div>
-        <div class="val-div"></div>
-        <div class="values-cell"><span class="val-dot"></span>Events &amp; Gatherings</div>
-      </div>
-      <div class="values-row">
-        <div class="values-cell"><span class="val-dot"></span>Independent Brands</div>
-        <div class="val-div"></div>
-        <div class="values-cell"><span class="val-dot"></span>Founder-Led Business</div>
-      </div>
+      <div class="values-head"><div class="values-head-cell">APW</div><div class="val-div"></div><div class="values-head-cell">Lesley Sun</div></div>
+      <div class="values-row"><div class="values-cell"><span class="val-dot"></span>Community</div><div class="val-div"></div><div class="values-cell"><span class="val-dot"></span>Community</div></div>
+      <div class="values-row"><div class="values-cell"><span class="val-dot"></span>Culture</div><div class="val-div"></div><div class="values-cell"><span class="val-dot"></span>Modern Asian Identity</div></div>
+      <div class="values-row"><div class="values-cell"><span class="val-dot"></span>Creativity</div><div class="val-div"></div><div class="values-cell"><span class="val-dot"></span>Design-Led Fashion</div></div>
+      <div class="values-row"><div class="values-cell"><span class="val-dot"></span>Experiences</div><div class="val-div"></div><div class="values-cell"><span class="val-dot"></span>Events &amp; Gatherings</div></div>
+      <div class="values-row"><div class="values-cell"><span class="val-dot"></span>Independent Brands</div><div class="val-div"></div><div class="values-cell"><span class="val-dot"></span>Founder-Led Business</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     SECTION — WHAT WE BRING TO APW
-══════════════════════════════════ -->
-<section class="section cream" id="activation">
+<!-- WHAT WE BRING -->
+<section class="section cream">
   <div class="section-header">
     <div class="section-eyebrow reveal">Activation Potential</div>
     <div class="section-title reveal d1">What Lesley Sun Can Bring To APW</div>
     <div class="gold-rule reveal d2"></div>
-    <p class="section-desc reveal d2">This is gold for APW. A brand that brings its community with it — and creates new reasons to visit every month.</p>
+    <p class="section-desc reveal d2">A brand that brings its community with it — and creates new reasons to visit APW every single month.</p>
   </div>
   <div class="event-grid">
-    <div class="event-card reveal">
-      <div class="event-label">Monthly</div>
-      <div class="event-title">Styling Sessions</div>
-      <div class="event-items">Women's Fashion Confidence Workshops<br>Personal Styling Consultations<br>Colour &amp; Wardrobe Clinics</div>
-    </div>
-    <div class="event-card reveal d1">
-      <div class="event-label">Ongoing</div>
-      <div class="event-title">Founder Conversations</div>
-      <div class="event-items">Women Entrepreneurship Sharing<br>Build-Your-Brand Talks<br>Founder Q&amp;A Sessions</div>
-    </div>
-    <div class="event-card reveal d2">
-      <div class="event-label">Seasonal</div>
-      <div class="event-title">Collection Launch Events</div>
-      <div class="event-items">New Collection Reveal Nights<br>Press &amp; Community Previews<br>Editorial Pop-up Moments</div>
-    </div>
-    <div class="event-card reveal d1">
-      <div class="event-label">Festive</div>
-      <div class="event-title">Seasonal Gatherings</div>
-      <div class="event-items">CNY — Collection &amp; Community<br>Mid Autumn Festival<br>Mother's Day Celebrations</div>
-    </div>
-    <div class="event-card reveal d2">
-      <div class="event-label">Collaborative</div>
-      <div class="event-title">Brand Collaborations</div>
-      <div class="event-items">Coffee · Flowers · Jewellery<br>Lifestyle &amp; Wellness Brands<br>Cross-community Partnerships</div>
-    </div>
-    <div class="event-card reveal d3">
-      <div class="event-label">Community</div>
-      <div class="event-title">Community Markets</div>
-      <div class="event-items">Female Entrepreneur Spotlights<br>Curated Vendor Markets<br>Creative Pop-up Weekends</div>
-    </div>
+    <div class="event-card reveal"><div class="event-label">Monthly</div><div class="event-title">Styling Sessions</div><div class="event-items">Women's Fashion Confidence Workshops<br>Personal Styling Consultations<br>Colour &amp; Wardrobe Clinics</div></div>
+    <div class="event-card reveal d1"><div class="event-label">Ongoing</div><div class="event-title">Founder Conversations</div><div class="event-items">Women Entrepreneurship Sharing<br>Build-Your-Brand Talks<br>Founder Q&amp;A Sessions</div></div>
+    <div class="event-card reveal d2"><div class="event-label">Seasonal</div><div class="event-title">Collection Launch Events</div><div class="event-items">New Collection Reveal Nights<br>Press &amp; Community Previews<br>Editorial Pop-up Moments</div></div>
+    <div class="event-card reveal d1"><div class="event-label">Festive</div><div class="event-title">Seasonal Gatherings</div><div class="event-items">CNY — Collection &amp; Community<br>Mid Autumn Festival<br>Mother's Day Celebrations</div></div>
+    <div class="event-card reveal d2"><div class="event-label">Collaborative</div><div class="event-title">Brand Collaborations</div><div class="event-items">Coffee · Flowers · Jewellery<br>Lifestyle &amp; Wellness Brands<br>Cross-community Partnerships</div></div>
+    <div class="event-card reveal d3"><div class="event-label">Community</div><div class="event-title">Community Markets</div><div class="event-items">Female Entrepreneur Spotlights<br>Curated Vendor Markets<br>Creative Pop-up Weekends</div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════
-     SECTION — FOUNDER-LED COMMUNITY
-══════════════════════════════════ -->
+<!-- FOUNDER-LED -->
 <section class="section dark">
   <div class="two-col a">
     <div>
@@ -736,83 +606,46 @@
         <div class="section-eyebrow reveal">The Founder Advantage</div>
         <div class="section-title reveal d1">Deeply<br>Founder-Led.</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2">
-          Unlike conventional retail brands, Lesley Sun remains deeply founder-led. Lesley's personal connection with customers has become one of the brand's strongest assets — creating trust, loyalty and long-term relationships that extend far beyond retail.
-        </p>
+        <p class="section-desc reveal d2" style="color:var(--cream);">Unlike conventional retail brands, Lesley Sun remains deeply founder-led. Lesley's personal connection with customers has become one of the brand's strongest assets — creating trust, loyalty and long-term relationships that extend far beyond retail.</p>
       </div>
-      <p style="font-size:0.88rem;line-height:1.78;opacity:0.68;max-width:520px;" class="reveal d3">
-        APW loves founder stories. So does the Lesley Sun community. This alignment is rare and genuinely powerful.
-      </p>
+      <p style="font-size:0.86rem;line-height:1.8;opacity:0.6;max-width:480px;color:var(--cream);" class="reveal d3">APW loves founder stories. So does the Lesley Sun community. This alignment is rare and genuinely powerful.</p>
       <div class="stat-row reveal d4">
         <div class="stat-cell"><div class="stat-num">9+</div><div class="stat-lbl">Years Building Trust</div></div>
         <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-lbl">Organic Community</div></div>
         <div class="stat-cell"><div class="stat-num">2017</div><div class="stat-lbl">Founded in Malaysia</div></div>
       </div>
     </div>
-    <div class="founder-photo reveal d2" style="aspect-ratio:3/4;">
-      <img src="LS%20Photos/Founder.jpg" alt="Lesley Sun" style="object-position:top center;">
-    </div>
+    <div class="founder-photo reveal d2" style="aspect-ratio:3/4;"><img src="LS%20Photos/Founder.jpg" alt="Lesley Sun" style="object-position:top center;"></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     SECTION — DIGITAL COMMUNITY
-══════════════════════════════════ -->
+<!-- DIGITAL COMMUNITY -->
 <section class="section dark" style="background:#141414;">
-  <div class="social-hero reveal">
-    <div class="social-big gold-shimmer">121K+</div>
-    <div class="social-desc">Instagram Followers — 100% Organic Growth</div>
+  <div class="community-statement reveal">
+    <div class="cs-big">A Community of Women<br>Who Show Up. Constantly.</div>
+    <p class="cs-sub">Our digital presence reflects one truth: when you build genuine community, they follow you everywhere — online, in-store, and back again, every season.</p>
   </div>
   <div class="social-three reveal d2">
-    <div class="s-cell">
-      <span class="s-num">4.8%</span>
-      <span class="s-label">Engagement Rate<br>(Industry avg: 1–2%)</span>
-    </div>
-    <div class="s-cell">
-      <span class="s-num">85%</span>
-      <span class="s-label">Female Audience<br>Core Target Demo</span>
-    </div>
-    <div class="s-cell">
-      <span class="s-num">100%</span>
-      <span class="s-label">Organic Growth<br>No Paid Followers</span>
-    </div>
+    <div class="s-cell"><span class="s-num">4.8%</span><span class="s-label">Engagement Rate<br>Industry avg: 1–2%</span></div>
+    <div class="s-cell"><span class="s-num">85%</span><span class="s-label">Female Audience<br>Core Target Demo</span></div>
+    <div class="s-cell"><span class="s-num">100%</span><span class="s-label">Organic Growth<br>No Paid Audience</span></div>
   </div>
   <div class="strategy-strip reveal d3">
-    <div class="strategy-cell">
-      <div class="strategy-label">Strategy 01</div>
-      <div class="strategy-text">Founder-Led<br>Storytelling</div>
-    </div>
-    <div class="strategy-cell">
-      <div class="strategy-label">Strategy 02</div>
-      <div class="strategy-text">Influencer<br>&amp; UGC</div>
-    </div>
-    <div class="strategy-cell">
-      <div class="strategy-label">Strategy 03</div>
-      <div class="strategy-text">Lifestyle<br>Editorial</div>
-    </div>
-    <div class="strategy-cell">
-      <div class="strategy-label">Strategy 04</div>
-      <div class="strategy-text">Community<br>Engagement</div>
-    </div>
+    <div class="strategy-cell"><div class="strategy-label">Strategy 01</div><div class="strategy-text">Founder-Led<br>Storytelling</div></div>
+    <div class="strategy-cell"><div class="strategy-label">Strategy 02</div><div class="strategy-text">Influencer<br>&amp; UGC</div></div>
+    <div class="strategy-cell"><div class="strategy-label">Strategy 03</div><div class="strategy-text">Lifestyle<br>Editorial</div></div>
+    <div class="strategy-cell"><div class="strategy-label">Strategy 04</div><div class="strategy-text">Community<br>Engagement</div></div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;" class="reveal d4">
-    <div class="photo-cell" style="aspect-ratio:16/7;">
-      <img src="LS%20Photos/Marketing.jpg" alt="Marketing">
-      <div class="photo-badge">Marketing &amp; Brand</div>
-    </div>
-    <div class="photo-cell" style="aspect-ratio:16/7;">
-      <img src="LS%20Photos/Website.jpg" alt="Digital Presence">
-      <div class="photo-badge">Digital Presence</div>
-    </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;" class="reveal d4">
+    <div class="photo-cell" style="aspect-ratio:16/7;" data-lb="LS%20Photos/Marketing.jpg" data-label="Marketing & Brand"><img src="LS%20Photos/Marketing.jpg" alt="Marketing" loading="lazy"><div class="photo-badge">Marketing &amp; Brand</div><div class="lb-hint"></div></div>
+    <div class="photo-cell" style="aspect-ratio:16/7;" data-lb="LS%20Photos/Website.jpg" data-label="Digital Presence"><img src="LS%20Photos/Website.jpg" alt="Digital Presence" loading="lazy"><div class="photo-badge">Digital Presence</div><div class="lb-hint"></div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════
-     SECTION — REGIONAL PRESENCE
-══════════════════════════════════ -->
-<section class="section cream" id="credentials">
+<!-- REGIONAL PRESENCE -->
+<section class="section cream">
   <div class="section-header">
     <div class="section-eyebrow reveal">Established Footprint</div>
     <div class="section-title reveal d1">Community Hubs<br>Across Southeast Asia</div>
@@ -820,56 +653,19 @@
     <p class="section-desc reveal d2">Each location is more than a store. It is a gathering space, a community hub, a lifestyle destination.</p>
   </div>
   <div class="hub-grid">
-    <div class="hub-card reveal">
-      <img class="hub-photo" src="LS%20Photos/Location%20LS%20KL%20Tropicana%20Avenue.jpg" alt="KL Tropicana" onerror="this.style.display='none'">
-      <div class="hub-body">
-        <div class="hub-label">Community Hub · Malaysia</div>
-        <div class="hub-title">Flagship Experience</div>
-        <div class="hub-detail">Tropicana Avenue · Kuala Lumpur<br>Lifestyle Gathering Space<br>Regional Customer Base</div>
-      </div>
+    <div class="hub-card reveal"><img class="hub-photo" src="LS%20Photos/Location%20LS%20KL%20Tropicana%20Avenue.jpg" alt="KL Tropicana" onerror="this.style.display='none'"><div class="hub-body"><div class="hub-label">Community Hub · Malaysia</div><div class="hub-title">Flagship Experience</div><div class="hub-detail">Tropicana Avenue · Kuala Lumpur<br>Lifestyle Gathering Space</div></div></div>
+    <div class="hub-card reveal d1"><img class="hub-photo" src="LS%20Photos/Location%20LS%20KL%20Bukit%20Jalil.jpg" alt="KL Bukit Jalil" onerror="this.style.display='none'"><div class="hub-body"><div class="hub-label">Community Hub · Malaysia</div><div class="hub-title">Lifestyle Gathering Space</div><div class="hub-detail">Bukit Jalil · MyTown · AEON<br>Nu Sentral · Paradigm · Sunway</div></div></div>
+    <div class="hub-card reveal d2"><img class="hub-photo" src="LS%20Photos/Location%20LS%20SG%20store.jpg" alt="Singapore" onerror="this.style.display='none'"><div class="hub-body"><div class="hub-label">Community Hub · Singapore</div><div class="hub-title">Singapore Flagship</div><div class="hub-detail">Orchard Road · Premium Location<br>Cross-border community</div></div></div>
+    <div class="hub-card reveal d3"><img class="hub-photo" src="LS%20Photos/LS%20SG%20Metro%20Paragon.jpg" alt="Metro Paragon" onerror="this.style.display='none'"><div class="hub-body"><div class="hub-label">Community Hub · Singapore</div><div class="hub-title">Metro Paragon</div><div class="hub-detail">Orchard · Singapore<br>Premium lifestyle destination</div></div></div>
+    <div class="hub-card reveal d4"><img class="hub-photo" src="LS%20Photos/LS%20SG%20Takashimaya.jpg" alt="Takashimaya" onerror="this.style.display='none'"><div class="hub-body"><div class="hub-label">Community Hub · Singapore</div><div class="hub-title">Takashimaya</div><div class="hub-detail">Ngee Ann City · Singapore<br>Established customer base</div></div></div>
+    <div class="hub-card reveal d4" style="border:2px dashed rgba(201,169,110,0.35);background:rgba(201,169,110,0.03);">
+      <div style="height:150px;display:flex;align-items:center;justify-content:center;"><span style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(201,169,110,0.5);">Next · APW Bangsar</span></div>
+      <div class="hub-body"><div class="hub-label" style="color:var(--gold);">Seeking · 2026</div><div class="hub-title">APW Community Hub</div><div class="hub-detail">A long-term home for a growing community of women who value fashion, creativity and meaningful experiences.</div></div>
     </div>
-    <div class="hub-card reveal d1">
-      <img class="hub-photo" src="LS%20Photos/Location%20LS%20KL%20Bukit%20Jalil.jpg" alt="KL Bukit Jalil" onerror="this.style.display='none'">
-      <div class="hub-body">
-        <div class="hub-label">Community Hub · Malaysia</div>
-        <div class="hub-title">Lifestyle Gathering Space</div>
-        <div class="hub-detail">Bukit Jalil · MyTown · AEON<br>Nu Sentral · Paradigm Mall<br>Sunway Pyramid · Gurney Paragon</div>
-      </div>
-    </div>
-    <div class="hub-card reveal d2">
-      <img class="hub-photo" src="LS%20Photos/Location%20LS%20SG%20store.jpg" alt="Singapore" onerror="this.style.display='none'">
-      <div class="hub-body">
-        <div class="hub-label">Community Hub · Singapore</div>
-        <div class="hub-title">Singapore Flagship</div>
-        <div class="hub-detail">Orchard Road · Premium Location<br>Cross-border community<br>Growing regional demand</div>
-      </div>
-    </div>
-    <div class="hub-card reveal d3">
-      <img class="hub-photo" src="LS%20Photos/LS%20SG%20Metro%20Paragon.jpg" alt="Metro Paragon Singapore" onerror="this.style.display='none'">
-      <div class="hub-body">
-        <div class="hub-label">Community Hub · Singapore</div>
-        <div class="hub-title">Metro Paragon</div>
-        <div class="hub-detail">Orchard · Singapore<br>Premium retail destination<br>High-traffic lifestyle mall</div>
-      </div>
-    </div>
-    <div class="hub-card reveal d4">
-      <img class="hub-photo" src="LS%20Photos/LS%20SG%20Takashimaya.jpg" alt="Takashimaya Singapore" onerror="this.style.display='none'">
-      <div class="hub-body">
-        <div class="hub-label">Community Hub · Singapore</div>
-        <div class="hub-title">Takashimaya</div>
-        <div class="hub-detail">Ngee Ann City · Orchard<br>Singapore's premier department store<br>Established customer base</div>
-      </div>
-    </div>
-  </div>
-  <div class="callout reveal d3" style="border-color:rgba(0,0,0,0.12);background:var(--black);">
-    <span class="callout-label">Next Community Home</span>
-    <span class="callout-text" style="color:var(--cream);">APW Bangsar — where the community belongs.</span>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     SECTION — BRAND CREDENTIALS
-══════════════════════════════════ -->
+<!-- CREDENTIALS -->
 <section class="section dark">
   <div class="two-col">
     <div>
@@ -879,52 +675,106 @@
         <div class="gold-rule reveal d2"></div>
       </div>
       <div class="cred-grid reveal d2">
-        <div class="cred-card">
-          <div class="cred-year">2023</div>
-          <div class="cred-title">Women Entrepreneur<br>of the Year</div>
-          <div class="cred-body">Recognised for outstanding contributions to Malaysian entrepreneurship and fashion.</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-year">Multiple Years</div>
-          <div class="cred-title">My Favourite Things<br>Award Winner</div>
-          <div class="cred-body">Consumer-voted — reflecting genuine brand love and loyalty among Malaysian women.</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-year">2017–2026</div>
-          <div class="cred-title">9+ Years<br>Proven Track Record</div>
-          <div class="cred-body">Consistent growth and loyal repeat community across economic cycles.</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-year">Ongoing</div>
-          <div class="cred-title">Press &amp; Media<br>Coverage</div>
-          <div class="cred-body">Regularly featured in Malaysian fashion media, lifestyle publications and influencer content.</div>
-        </div>
+        <div class="cred-card"><div class="cred-year">2023</div><div class="cred-title">Women Entrepreneur of the Year</div><div class="cred-body">Recognised for outstanding contributions to Malaysian entrepreneurship and fashion.</div></div>
+        <div class="cred-card"><div class="cred-year">Multiple Years</div><div class="cred-title">My Favourite Things Award</div><div class="cred-body">Consumer-voted recognition reflecting genuine brand love and loyalty.</div></div>
+        <div class="cred-card"><div class="cred-year">2017–2026</div><div class="cred-title">9+ Years Track Record</div><div class="cred-body">Consistent growth and loyal repeat community across economic cycles.</div></div>
+        <div class="cred-card"><div class="cred-year">Ongoing</div><div class="cred-title">Press &amp; Media Coverage</div><div class="cred-body">Regularly featured in Malaysian fashion media and lifestyle publications.</div></div>
       </div>
     </div>
-    <div class="reveal d2" style="display:grid;grid-template-rows:1fr auto;gap:0.8rem;align-self:stretch;">
-      <div style="overflow:hidden;background:#111;">
-        <img src="LS%20Photos/Award%201.jpg" alt="Award" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.parentElement.style.background='rgba(201,169,110,0.08)'">
-      </div>
+    <div class="reveal d2" style="display:grid;grid-template-rows:1fr auto;gap:0.8rem;align-self:stretch;min-height:320px;">
+      <div class="photo-cell" style="aspect-ratio:auto;flex:1;" data-lb="LS%20Photos/Award%201.jpg" data-label="Award"><img src="LS%20Photos/Award%201.jpg" alt="Award" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="lb-hint"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
-        <div style="overflow:hidden;background:#111;aspect-ratio:4/3;">
-          <img src="LS%20Photos/Award%202.jpg" alt="Award 2" style="width:100%;height:100%;object-fit:cover;display:block;">
-        </div>
-        <div style="overflow:hidden;background:#111;aspect-ratio:4/3;">
-          <img src="LS%20Photos/Award%203.jpg" alt="Award 3" style="width:100%;height:100%;object-fit:cover;display:block;">
-        </div>
+        <div class="photo-cell" data-lb="LS%20Photos/Award%202.jpg" data-label="Award" style="aspect-ratio:4/3;"><img src="LS%20Photos/Award%202.jpg" alt="Award 2" loading="lazy"><div class="lb-hint"></div></div>
+        <div class="photo-cell" data-lb="LS%20Photos/Award%203.jpg" data-label="Award" style="aspect-ratio:4/3;"><img src="LS%20Photos/Award%203.jpg" alt="Award 3" loading="lazy"><div class="lb-hint"></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     SECTION — WHY APW × LESLEY SUN (BIG SLIDE)
-══════════════════════════════════ -->
-<div class="statement-section" id="partnership">
+<!-- LEASING BRIEF -->
+<section class="section cream" id="leasing">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">For the Leasing Team</div>
+    <div class="section-title reveal d1">Leasing Brief &amp;<br>Space Proposal</div>
+    <div class="gold-rule reveal d2"></div>
+    <p class="section-desc reveal d2">A transparent overview of what Lesley Sun requires, commits to, and brings to APW as a long-term tenant partner.</p>
+  </div>
+  <div class="leasing-grid reveal d2">
+    <div class="leasing-cell">
+      <div class="lc-label">Space Requirement</div>
+      <div class="lc-title">Unit Size &amp; Location</div>
+      <div class="lc-spec">
+        <span>800 – 1,500 sq ft preferred</span>
+        <span>Ground floor or high-footfall placement</span>
+        <span>Open-plan layout preferred</span>
+        <span>Corner or end-of-row visibility ideal</span>
+        <span>Flexible to co-create with APW team</span>
+      </div>
+    </div>
+    <div class="leasing-cell">
+      <div class="lc-label">Fit-Out Commitment</div>
+      <div class="lc-title">Store Design &amp; Investment</div>
+      <div class="lc-spec">
+        <span>Brand-funded premium retail fit-out</span>
+        <span>Warm natural materials — wood, linen, marble</span>
+        <span>Soft lighting, editorial-quality display</span>
+        <span>Elevates surrounding tenant aesthetic</span>
+        <span>Social-ready fitting zones built-in</span>
+      </div>
+    </div>
+    <div class="leasing-cell">
+      <div class="lc-label">Lease Terms</div>
+      <div class="lc-title">Preferred Structure</div>
+      <div class="lc-spec">
+        <span>Minimum 2-year term preferred</span>
+        <span>Open to revenue-share hybrid model</span>
+        <span>Pop-up pilot available Q2–Q3 2026</span>
+        <span>Boutique or concession format — flexible</span>
+        <span>Long-term partnership mindset</span>
+      </div>
+    </div>
+    <div class="leasing-cell highlight">
+      <div class="lc-label">Opening Readiness</div>
+      <div class="lc-title">Timeline &amp; Launch</div>
+      <div class="lc-spec">
+        <span>Ready for lease signing: Q2 2026</span>
+        <span>Fit-out period: 6–8 weeks</span>
+        <span>Target opening: Q3 2026</span>
+        <span>Community launch event from day one</span>
+        <span>Organic social announcement: wide reach</span>
+      </div>
+    </div>
+    <div class="leasing-cell">
+      <div class="lc-label">Traffic &amp; Dwell Time</div>
+      <div class="lc-title">What We Drive to APW</div>
+      <div class="lc-spec">
+        <span>Monthly events drive repeat foot traffic</span>
+        <span>Average event: 30–80 engaged attendees</span>
+        <span>High dwell time — community stays longer</span>
+        <span>Cross-visits to F&amp;B &amp; lifestyle neighbours</span>
+        <span>Organic social amplification post-event</span>
+      </div>
+    </div>
+    <div class="leasing-cell">
+      <div class="lc-label">Cotenancy Fit</div>
+      <div class="lc-title">Brand Neighbours</div>
+      <div class="lc-spec">
+        <span>Best alongside: specialty coffee, florals</span>
+        <span>Complements: jewellery, wellness, lifestyle</span>
+        <span>Synergistic with creative F&amp;B concepts</span>
+        <span>Enhances APW's independent brand story</span>
+        <span>Open to brand collaboration events</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG STATEMENT -->
+<div class="statement-section">
   <div class="statement-photo-bg"></div>
   <div class="statement-content">
     <div class="section-eyebrow reveal" style="color:var(--gold);">Together We Can Create</div>
-    <div class="section-title reveal d1" style="color:var(--white);font-size:clamp(2rem,4vw,3.2rem);max-width:600px;">Why APW × Lesley Sun</div>
+    <div class="section-title reveal d1" style="color:var(--white);font-size:clamp(2rem,4vw,3.2rem);max-width:560px;">Why APW × Lesley Sun</div>
     <div class="gold-rule reveal d2"></div>
     <div class="check-grid reveal d2">
       <div class="check-item"><span class="check-icon">✓</span><span class="check-text">Fashion Destination</span></div>
@@ -943,30 +793,16 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     FOOTER / CONTACT
-══════════════════════════════════ -->
-<footer class="colophon">
+<!-- FOOTER -->
+<footer class="colophon" id="contact">
   <div class="cl-brand reveal">Lesley Sun</div>
   <div class="cl-tag reveal d1 gold-shimmer">Fashion. Community. Culture. · Est. 2017</div>
-  <div style="width:40px;height:1px;background:var(--gold);margin:0 auto 2.5rem;" class="reveal d1"></div>
+  <div style="width:36px;height:1px;background:var(--gold);margin:0 auto 2.5rem;" class="reveal d1"></div>
   <div class="contact-grid reveal d2">
-    <div>
-      <div class="ci-type">Phone</div>
-      <div class="ci-val">+6012-371 4427</div>
-    </div>
-    <div>
-      <div class="ci-type">Email</div>
-      <div class="ci-val">admin@lesleysun.com</div>
-    </div>
-    <div>
-      <div class="ci-type">Web</div>
-      <div class="ci-val">www.lesleysun.com</div>
-    </div>
-    <div>
-      <div class="ci-type">Instagram</div>
-      <div class="ci-val">@lesleysunofficial</div>
-    </div>
+    <div><div class="ci-type">Phone</div><div class="ci-val">+6012-371 4427</div></div>
+    <div><div class="ci-type">Email</div><div class="ci-val">admin@lesleysun.com</div></div>
+    <div><div class="ci-type">Web</div><div class="ci-val">www.lesleysun.com</div></div>
+    <div><div class="ci-type">Instagram</div><div class="ci-val">@lesleysunofficial</div></div>
   </div>
   <div class="cl-note reveal d3">
     Confidential · Prepared for APW Leasing Team · 2026<br>
@@ -975,16 +811,73 @@
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+/* ── Scroll reveal ── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* ── Lightbox ── */
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-counter');
+let lbImages  = [], lbIdx = 0;
+
+function buildLbList() {
+  lbImages = Array.from(document.querySelectorAll('[data-lb]')).map(el => ({
+    src: el.dataset.lb, label: el.dataset.label || ''
+  }));
+}
+
+function showLbImg() {
+  const item = lbImages[lbIdx];
+  lbImg.src = item.src; lbImg.alt = item.label;
+  lbCount.textContent = (lbIdx + 1) + ' / ' + lbImages.length + (item.label ? '  ·  ' + item.label : '');
+}
+
+function openLb(src) {
+  buildLbList();
+  lbIdx = lbImages.findIndex(i => i.src === src);
+  if (lbIdx < 0) lbIdx = 0;
+  showLbImg();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { lbImg.src = ''; }, 300);
+}
+
+document.querySelectorAll('[data-lb]').forEach(el =>
+  el.addEventListener('click', () => openLb(el.dataset.lb))
+);
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+document.getElementById('lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + lbImages.length) % lbImages.length; showLbImg(); });
+document.getElementById('lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % lbImages.length; showLbImg(); });
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') { lbIdx = (lbIdx - 1 + lbImages.length) % lbImages.length; showLbImg(); }
+  if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % lbImages.length; showLbImg(); }
+});
+
+let lbTx = 0;
+lb.addEventListener('touchstart', e => { lbTx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  const d = lbTx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 45) { lbIdx = (lbIdx + (d > 0 ? 1 : -1) + lbImages.length) % lbImages.length; showLbImg(); }
+});
+
+/* ── Carousel: respect prefers-reduced-motion ── */
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const track = document.querySelector('.carousel-track');
+  if (track) track.style.animation = 'none';
+}
 </script>
 </body>
 </html>
