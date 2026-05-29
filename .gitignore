@@ -1,0 +1,6 @@
+# Exclude heavy office files — only HTML and photos needed on Vercel
+*.pptx
+*.pdf
+*.PNG
+*.png
+.DS_Store
