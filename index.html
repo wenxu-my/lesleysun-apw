@@ -295,6 +295,34 @@
   .closing-quote { margin-top: 2.2rem; padding: 1.6rem 2rem; border: 1px solid rgba(201,169,110,0.22); background: rgba(28,28,28,0.65); backdrop-filter: blur(12px); max-width: 700px; }
   .closing-quote p { font-family: Georgia, serif; font-style: italic; font-size: clamp(0.92rem,1.5vw,1.15rem); color: var(--cream); line-height: 1.82; }
 
+  /* ── MISSION / VISION ── */
+  .mv-block { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .mv-item { padding-left: 1.5rem; border-left: 1px solid rgba(201,169,110,0.35); }
+  .mv-label { font-size: 0.54rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.45rem; }
+  .mv-text { font-size: 0.9rem; color: var(--cream); line-height: 1.72; opacity: 0.78; max-width: 480px; }
+
+  /* ── BRAND DNA CARDS ── */
+  .dna-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (max-width: 650px) { .dna-grid { grid-template-columns: 1fr; } }
+  .dna-card { background: var(--cream); border-left: 3px solid var(--gold); padding: 2rem 1.8rem; }
+  .dna-title { font-family: Georgia, serif; font-style: italic; font-size: 1.15rem; color: var(--black); margin-bottom: 1rem; }
+  .dna-body { font-size: 0.82rem; color: var(--black); opacity: 0.62; line-height: 1.78; }
+
+  /* ── PERSONA CARDS ── */
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.5rem; }
+  @media (max-width: 650px) { .persona-grid { grid-template-columns: 1fr; } }
+  .persona-card { padding: 1.8rem; background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.16); }
+  .persona-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-bottom: 0.9rem; }
+  .persona-title { font-family: Georgia, serif; font-style: italic; font-size: 1.05rem; color: var(--cream); margin-bottom: 0.5rem; }
+  .persona-body { font-size: 0.78rem; color: var(--cream); opacity: 0.55; line-height: 1.7; }
+
+  /* ── PRODUCT CATEGORY BAR ── */
+  .cat-strip { display: flex; flex-wrap: wrap; gap: 1px; background: rgba(201,169,110,0.18); margin-top: 2rem; }
+  .cat-item { flex: 1; min-width: 140px; background: var(--black); padding: 1.4rem 1.2rem; }
+  .cat-name { font-family: Georgia, serif; font-style: italic; font-size: 0.95rem; color: var(--cream); margin-bottom: 0.35rem; }
+  .cat-desc { font-size: 0.7rem; color: var(--cream); opacity: 0.45; line-height: 1.6; }
+  @media (max-width: 600px) { .cat-item { min-width: 45%; } }
+
   /* ── FOOTER ── */
   .colophon { background: var(--black); padding: 4rem clamp(1.2rem,5vw,5.5rem); text-align: center; border-top: 1px solid var(--border); }
   .cl-brand { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,4vw,3.5rem); color: var(--white); margin-bottom: 0.5rem; }
@@ -358,14 +386,23 @@
   <div class="two-col b">
     <div>
       <div class="section-header">
-        <div class="section-eyebrow reveal">Brand Story</div>
-        <div class="section-title reveal d1">A Brand Built<br>on Belonging</div>
+        <div class="section-eyebrow reveal">01 — Brand Introduction</div>
+        <div class="section-title reveal d1">A Brand Built<br>for Modern Women.</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2" style="color:var(--cream);">For nearly a decade, Lesley Sun has cultivated a loyal following of women who don't simply purchase clothing — they participate in a lifestyle built around confidence, self-expression and community.</p>
+        <p class="section-desc reveal d2" style="color:var(--cream);">Lesley Sun is a contemporary Malaysian womenswear brand rooted in the belief that everyday dressing should feel effortless, elevated, and deeply personal. Each collection is crafted for real women living full, modern lives — designed to move seamlessly from morning meetings to evening gatherings.</p>
       </div>
-      <p style="font-size:0.88rem;line-height:1.8;opacity:0.65;max-width:520px;color:var(--cream);" class="reveal d3">What began as a fashion label has evolved into something far more significant: a trusted space where Malaysian women find pieces that feel exactly right, and people who feel exactly like them.</p>
+      <div class="mv-block reveal d3">
+        <div class="mv-item">
+          <div class="mv-label">Our Mission</div>
+          <div class="mv-text">To empower women through fashion that is timeless, wearable, and quietly confident. Pieces that feel as good as they look.</div>
+        </div>
+        <div class="mv-item">
+          <div class="mv-label">Our Vision</div>
+          <div class="mv-text">To become Southeast Asia's most loved contemporary womenswear brand — synonymous with refined everyday elegance.</div>
+        </div>
+      </div>
       <div class="quote-block reveal d4">
-        <blockquote style="color:var(--cream);">"I wanted to create more than a brand. I wanted to create a home for women to come back to."</blockquote>
+        <blockquote style="color:var(--cream);">"I wanted to create pieces that women reach for again and again — not because they're trendy, but because they feel exactly right."</blockquote>
         <cite>— Lesley Sun, Founder</cite>
       </div>
       <div class="stat-row reveal d4">
@@ -378,43 +415,64 @@
   </div>
 </section>
 
+<!-- BRAND DNA -->
+<section class="section cream">
+  <div class="section-header">
+    <div class="section-eyebrow reveal">03 — Brand DNA</div>
+    <div class="section-title reveal d1">The Lesley Sun Aesthetic.</div>
+    <div class="gold-rule reveal d2"></div>
+    <p class="section-desc reveal d2">Four design principles that define every collection — and the reason women keep coming back.</p>
+  </div>
+  <div class="dna-grid">
+    <div class="dna-card reveal">
+      <div class="dna-title">Timeless Femininity</div>
+      <div class="dna-body">Clean silhouettes that honour the feminine form without constraint. From soft draping to structured tailoring — every piece transcends seasons and trends.</div>
+    </div>
+    <div class="dna-card reveal d1">
+      <div class="dna-title">Elevated Essentials</div>
+      <div class="dna-body">Premium fabrics. Thoughtful construction. Our wardrobe staples are built to outlast fast fashion and become the most-worn pieces in any woman's closet.</div>
+    </div>
+    <div class="dna-card reveal d2">
+      <div class="dna-title">Neutral Palette</div>
+      <div class="dna-body">A signature range of creams, taupes, soft whites, and earthy tones — colours that layer effortlessly, travel beautifully, and photograph in every setting.</div>
+    </div>
+    <div class="dna-card reveal d3">
+      <div class="dna-title">Everyday Luxury</div>
+      <div class="dna-body">Refined but liveable. We believe luxury is not about occasion — it is about how a garment makes you feel the moment you put it on.</div>
+    </div>
+  </div>
+</section>
+
 <div class="divider"></div>
 
 <!-- AUDIENCE -->
 <section class="section dark">
   <div class="section-header">
-    <div class="section-eyebrow reveal">Who Comes With Us</div>
-    <div class="section-title reveal d1">Not Just Customers.<br>A Premium Female Audience.</div>
+    <div class="section-eyebrow reveal">04 — Target Audience</div>
+    <div class="section-title reveal d1">She Knows Exactly<br>Who She Is.</div>
     <div class="gold-rule reveal d2"></div>
-    <p class="section-desc reveal d2" style="color:var(--cream);">Women with real spending power who return again and again — not just to shop, but to belong.</p>
+    <p class="section-desc reveal d2" style="color:var(--cream);">The Lesley Sun woman is aged 28 to 55. She is educated, career-driven, and deeply intentional about how she presents herself. She invests in quality over quantity — and chooses pieces that work as hard as she does.</p>
   </div>
-  <div class="aud-grid reveal d2">
-    <div class="aud-col">
-      <div class="aud-col-title">Who She Is</div>
-      <div class="aud-item">Women 28–55</div>
-      <div class="aud-item">Professionals</div>
-      <div class="aud-item">Entrepreneurs</div>
-      <div class="aud-item">Business Owners</div>
-      <div class="aud-item">Mothers</div>
-      <div class="aud-item">Decision Makers</div>
+  <div class="persona-grid reveal d2">
+    <div class="persona-card">
+      <div class="persona-dot"></div>
+      <div class="persona-title">The Working Professional</div>
+      <div class="persona-body">Lawyers, consultants, founders, creatives — women who need a wardrobe that works across every context, from boardroom to brunch.</div>
     </div>
-    <div class="aud-col">
-      <div class="aud-col-title">High Spending Power</div>
-      <div class="aud-item">Fashion</div>
-      <div class="aud-item">Lifestyle &amp; Dining</div>
-      <div class="aud-item">Wellness</div>
-      <div class="aud-item">Travel</div>
-      <div class="aud-item">Home</div>
-      <div class="aud-item">Beauty</div>
+    <div class="persona-card">
+      <div class="persona-dot"></div>
+      <div class="persona-title">The Fashion-Conscious Minimalist</div>
+      <div class="persona-body">She curates, not accumulates. Every piece earns its place and tells a story. She is drawn to the brand's neutral palette and refined sensibility.</div>
     </div>
-    <div class="aud-col">
-      <div class="aud-col-title">They Show Up To</div>
-      <div class="aud-item">Collection launches</div>
-      <div class="aud-item">Styling sessions</div>
-      <div class="aud-item">Community workshops</div>
-      <div class="aud-item">Festive gatherings</div>
-      <div class="aud-item">Bring their friends</div>
-      <div class="aud-item">Come back, every time</div>
+    <div class="persona-card">
+      <div class="persona-dot"></div>
+      <div class="persona-title">The Urban Southeast Asian</div>
+      <div class="persona-body">Based in KL, Singapore, Penang, and beyond — culturally fluid, globally influenced, and deeply proud of a regional identity done beautifully.</div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-dot"></div>
+      <div class="persona-title">The Lifestyle-Led Shopper</div>
+      <div class="persona-body">Dressing for brunch, travel, board meetings, events, and everything in between. She spends across fashion, dining, wellness, and travel.</div>
     </div>
   </div>
 </section>
@@ -476,10 +534,19 @@
 <!-- PRODUCT CAROUSEL -->
 <section class="carousel-section" id="collection">
   <div class="carousel-header">
-    <div class="section-eyebrow reveal" style="color:var(--gold);">The Collection</div>
-    <div class="section-title reveal d1" style="color:var(--white);">Contemporary Womenswear<br>for the Modern Malaysian Woman</div>
+    <div class="section-eyebrow reveal" style="color:var(--gold);">05 — Product Categories</div>
+    <div class="section-title reveal d1" style="color:var(--white);">The Collection.</div>
     <div class="gold-rule reveal d2"></div>
-    <p class="section-desc reveal d2" style="color:var(--cream);">Elevated essentials, timeless silhouettes, and design-led fashion. Click any piece to view full size. Hover to pause.</p>
+    <p class="section-desc reveal d2" style="color:var(--cream);">Designed for the woman who dresses with intention. Every category is built around wearability, longevity, and quiet confidence.</p>
+    <div class="cat-strip reveal d3">
+      <div class="cat-item"><div class="cat-name">Dresses</div><div class="cat-desc">Slip silhouettes to structured occasion wear. Versatile, polished, endlessly wearable.</div></div>
+      <div class="cat-item"><div class="cat-name">Co-ords</div><div class="cat-desc">Curated matching sets that eliminate the guesswork — coordinated styling made effortless.</div></div>
+      <div class="cat-item"><div class="cat-name">Knitwear</div><div class="cat-desc">Soft premium knits for year-round layering, comfort, and quiet luxury.</div></div>
+      <div class="cat-item"><div class="cat-name">Tops &amp; Blouses</div><div class="cat-desc">The backbone of any wardrobe — refined cuts in elevated fabrics for every occasion.</div></div>
+      <div class="cat-item"><div class="cat-name">Bottoms</div><div class="cat-desc">Tailored trousers, fluid skirts, and structured shorts designed for real, stylish life.</div></div>
+      <div class="cat-item"><div class="cat-name">Occasion Wear</div><div class="cat-desc">Statement pieces for dinners, events, and milestone moments — dressed up, never overdone.</div></div>
+    </div>
+    <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.5);margin-top:1.5rem;" class="reveal d4">Scroll the collection below · Click any piece to view full size · Hover to pause</p>
   </div>
   <div class="carousel-wrapper reveal d2">
     <div class="carousel-track">
@@ -603,12 +670,12 @@
   <div class="two-col a">
     <div>
       <div class="section-header">
-        <div class="section-eyebrow reveal">The Founder Advantage</div>
-        <div class="section-title reveal d1">Deeply<br>Founder-Led.</div>
+        <div class="section-eyebrow reveal">02 — Founder Story</div>
+        <div class="section-title reveal d1">The Woman<br>Behind the Brand.</div>
         <div class="gold-rule reveal d2"></div>
-        <p class="section-desc reveal d2" style="color:var(--cream);">Unlike conventional retail brands, Lesley Sun remains deeply founder-led. Lesley's personal connection with customers has become one of the brand's strongest assets — creating trust, loyalty and long-term relationships that extend far beyond retail.</p>
+        <p class="section-desc reveal d2" style="color:var(--cream);">Lesley Sun founded the brand with a singular conviction: that stylish dressing should never feel complicated. Drawing from her own experience as a working woman navigating boardrooms, brunches, and everything in between, she built a wardrobe language that spoke to women like her.</p>
       </div>
-      <p style="font-size:0.86rem;line-height:1.8;opacity:0.6;max-width:480px;color:var(--cream);" class="reveal d3">APW loves founder stories. So does the Lesley Sun community. This alignment is rare and genuinely powerful.</p>
+      <p style="font-size:0.86rem;line-height:1.8;opacity:0.6;max-width:480px;color:var(--cream);" class="reveal d3">Since its founding, Lesley Sun has grown from a curated boutique into a recognised regional womenswear destination with a deeply loyal community across Malaysia and Singapore.</p>
       <div class="stat-row reveal d4">
         <div class="stat-cell"><div class="stat-num">9+</div><div class="stat-lbl">Years Building Trust</div></div>
         <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-lbl">Organic Community</div></div>
