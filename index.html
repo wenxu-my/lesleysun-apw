@@ -197,19 +197,25 @@
   .carousel-track { display: flex; gap: 10px; animation: scrollCarousel 50s linear infinite; width: max-content; }
   .carousel-track:hover { animation-play-state: paused; }
   @keyframes scrollCarousel { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-  .carousel-item { flex-shrink: 0; width: clamp(180px,20vw,280px); aspect-ratio: 2/3; overflow: hidden; cursor: pointer; position: relative; background: #1a1a1a; }
-  .carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  /* Carousel items: taller on mobile, top-crop to show face/outfit */
+  .carousel-item { flex-shrink: 0; width: clamp(220px,38vw,280px); aspect-ratio: 2/3; overflow: hidden; cursor: pointer; position: relative; background: #1a1a1a; }
+  .carousel-item img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.5s ease; }
   .carousel-item:hover img { transform: scale(1.04); }
+  /* Tap hint on carousel */
+  .carousel-item .lb-hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0); transition: background 0.25s; z-index: 3; pointer-events: none; }
+  .carousel-item:hover .lb-hint { background: rgba(0,0,0,0.25); }
+  .carousel-item .lb-hint::after { content: '⊕'; font-size: 1.6rem; color: rgba(201,169,110,0); transition: color 0.25s; }
+  .carousel-item:hover .lb-hint::after { color: rgba(201,169,110,0.8); }
 
-  /* ── BATIK ── */
-  .batik-section { background: var(--black); padding: var(--gap) clamp(1.2rem,5vw,5.5rem); }
-  .batik-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 2rem; }
-  @media (max-width: 700px) { .batik-grid { grid-template-columns: 1fr; gap: 5px; } }
-  .batik-cell { aspect-ratio: 2/3; overflow: hidden; position: relative; cursor: pointer; background: #1a1a1a; }
-  .batik-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
-  .batik-cell:hover img { transform: scale(1.03); }
-  .batik-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.2rem 1.2rem; background: linear-gradient(transparent, rgba(28,28,28,0.72)); pointer-events: none; }
-  .batik-tag { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+  /* ── CHEONGSAM ── */
+  .cheongsam-section { background: var(--black); padding: var(--gap) clamp(1.2rem,5vw,5.5rem); }
+  .cheongsam-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-top: 2rem; }
+  @media (max-width: 800px) { .cheongsam-grid { grid-template-columns: repeat(2,1fr); gap: 5px; } }
+  .cheongsam-cell { aspect-ratio: 2/3; overflow: hidden; position: relative; cursor: pointer; background: #1a1a1a; }
+  .cheongsam-cell img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.6s ease; }
+  .cheongsam-cell:hover img { transform: scale(1.03); }
+  .cheongsam-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1rem 0.8rem; background: linear-gradient(transparent, rgba(28,28,28,0.72)); pointer-events: none; }
+  .cheongsam-tag { font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
   /* ── VALUES TABLE ── */
   .values-wrap { border: 1px solid rgba(201,169,110,0.22); overflow: hidden; }
@@ -595,25 +601,27 @@
   </div>
 </section>
 
-<!-- BATIK INSPIRED CHEONGSAM -->
-<div class="batik-section">
-  <div class="two-col a">
-    <div>
-      <div class="section-eyebrow reveal" style="color:var(--gold);">Localised Heritage</div>
-      <div class="section-title reveal d1" style="color:var(--white);">Batik-Inspired<br>Cheongsam</div>
-      <div class="gold-rule reveal d2"></div>
-      <p class="section-desc reveal d2" style="color:var(--cream);">Where Malaysian heritage meets contemporary design. Lesley Sun's batik-inspired cheongsam collection draws from Malaysia's rich batik tradition — reinterpreted through a modern, wearable lens that speaks to both cultural pride and global aesthetics.</p>
-      <p style="font-size:0.86rem;line-height:1.8;opacity:0.6;max-width:460px;color:var(--cream);margin-top:1rem;" class="reveal d3">This is fashion that is distinctly Malaysian and deeply meaningful — the kind of locally rooted design identity that resonates with APW's creative, culturally aware community.</p>
-      <div class="callout reveal d4">
-        <span class="callout-label">Design Identity</span>
-        <span class="callout-text">Malaysian roots. Contemporary soul.</span>
-      </div>
-    </div>
-    <div class="batik-grid reveal d2">
-      <div class="batik-cell" data-lb="LS%20Photos/Batik%201.jpg" data-label="Batik Collection I"><img src="LS%20Photos/Batik%201.jpg" alt="Batik Cheongsam I" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection I</div></div><div class="lb-hint"></div></div>
-      <div class="batik-cell" data-lb="LS%20Photos/Batik%202.jpg" data-label="Batik Collection II"><img src="LS%20Photos/Batik%202.jpg" alt="Batik Cheongsam II" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection II</div></div><div class="lb-hint"></div></div>
-      <div class="batik-cell" data-lb="LS%20Photos/Batik%203.jpg" data-label="Batik Collection III"><img src="LS%20Photos/Batik%203.jpg" alt="Batik Cheongsam III" loading="lazy"><div class="batik-overlay"><div class="batik-tag">Batik Collection III</div></div><div class="lb-hint"></div></div>
-    </div>
+<!-- MODERN CHEONGSAM -->
+<div class="cheongsam-section">
+  <div class="section-header">
+    <div class="section-eyebrow reveal" style="color:var(--gold);">Signature Collection</div>
+    <div class="section-title reveal d1" style="color:var(--white);">Modern Cheongsam.</div>
+    <div class="gold-rule reveal d2"></div>
+    <p class="section-desc reveal d2" style="color:var(--cream);max-width:640px;">One of Asia's most iconic silhouettes, reinterpreted for the modern woman. The Lesley Sun cheongsam collection takes the elegance of heritage dressing and strips it back to its essential beauty — clean lines, refined proportions, and a quietly confident femininity that feels entirely of today.</p>
+  </div>
+  <div class="cheongsam-grid reveal d2">
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%201.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%201.jpeg" alt="Cheongsam 1" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%202.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%202.jpeg" alt="Cheongsam 2" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%203.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%203.jpeg" alt="Cheongsam 3" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%204.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%204.jpeg" alt="Cheongsam 4" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%205.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%205.jpeg" alt="Cheongsam 5" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%206.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%206.jpeg" alt="Cheongsam 6" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%207.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%207.jpeg" alt="Cheongsam 7" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+    <div class="cheongsam-cell" data-lb="LS%20Photos/Cheongsam/Cheongsam%208.jpeg" data-label="Modern Cheongsam"><img src="LS%20Photos/Cheongsam/Cheongsam%208.jpeg" alt="Cheongsam 8" loading="lazy"><div class="cheongsam-overlay"><div class="cheongsam-tag">Modern Cheongsam</div></div><div class="lb-hint"></div></div>
+  </div>
+  <div class="callout reveal d3" style="margin-top:1.5rem;">
+    <span class="callout-label">Design Identity</span>
+    <span class="callout-text">Asian heritage. Contemporary precision. Worn today.</span>
   </div>
 </div>
 
@@ -702,10 +710,6 @@
     <div class="strategy-cell"><div class="strategy-label">Strategy 02</div><div class="strategy-text">Influencer<br>&amp; UGC</div></div>
     <div class="strategy-cell"><div class="strategy-label">Strategy 03</div><div class="strategy-text">Lifestyle<br>Editorial</div></div>
     <div class="strategy-cell"><div class="strategy-label">Strategy 04</div><div class="strategy-text">Community<br>Engagement</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;" class="reveal d4">
-    <div class="photo-cell" style="aspect-ratio:16/7;" data-lb="LS%20Photos/Marketing.jpg" data-label="Marketing & Brand"><img src="LS%20Photos/Marketing.jpg" alt="Marketing" loading="lazy"><div class="photo-badge">Marketing &amp; Brand</div><div class="lb-hint"></div></div>
-    <div class="photo-cell" style="aspect-ratio:16/7;" data-lb="LS%20Photos/Website.jpg" data-label="Digital Presence"><img src="LS%20Photos/Website.jpg" alt="Digital Presence" loading="lazy"><div class="photo-badge">Digital Presence</div><div class="lb-hint"></div></div>
   </div>
 </section>
 
@@ -940,10 +944,25 @@ lb.addEventListener('touchend', e => {
   if (Math.abs(d) > 45) { lbIdx = (lbIdx + (d > 0 ? 1 : -1) + lbImages.length) % lbImages.length; showLbImg(); }
 });
 
-/* ── Carousel: respect prefers-reduced-motion ── */
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const track = document.querySelector('.carousel-track');
-  if (track) track.style.animation = 'none';
+/* ── Carousel: mobile tap fix + reduced-motion ── */
+const carouselTrack = document.querySelector('.carousel-track');
+if (carouselTrack) {
+  // Reduced motion: disable animation
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    carouselTrack.style.animation = 'none';
+  }
+  // Mobile tap: pause animation on touchstart so the item is stationary when
+  // the tap resolves — otherwise the browser treats it as a scroll, not a click
+  let resumeTimer;
+  carouselTrack.addEventListener('touchstart', () => {
+    clearTimeout(resumeTimer);
+    carouselTrack.style.animationPlayState = 'paused';
+  }, { passive: true });
+  carouselTrack.addEventListener('touchend', () => {
+    resumeTimer = setTimeout(() => {
+      carouselTrack.style.animationPlayState = 'running';
+    }, 600);
+  });
 }
 </script>
 </body>
