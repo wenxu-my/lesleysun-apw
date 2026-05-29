@@ -72,23 +72,25 @@
   }
   .hero-photo {
     position: absolute; inset: 0;
-    background-image: url('LS Photos/Batik 2.jpg');
+    background-image: url('LS Photos/Hero.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     transform: scale(1.04);
     transition: transform 8s ease-out;
   }
   /* Photo breathing in: Ken Burns on load */
   .hero-photo.loaded { transform: scale(1.0); }
-  /* Gradient: let photo show top 55%, vignette bottom 45% where text lives */
+  /* Gradient tuned for light-toned photo (white dress, cream bg):
+     heavy at base for text, moderate mid, very light at top so subject shows */
   .hero-photo::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(
       to top,
-      rgba(18,18,18,0.97) 0%,
-      rgba(18,18,18,0.82) 35%,
-      rgba(18,18,18,0.38) 65%,
-      rgba(18,18,18,0.12) 100%
+      rgba(12,12,12,0.98) 0%,
+      rgba(12,12,12,0.88) 28%,
+      rgba(12,12,12,0.55) 55%,
+      rgba(12,12,12,0.22) 78%,
+      rgba(12,12,12,0.08) 100%
     );
   }
   /* Top-left label */
