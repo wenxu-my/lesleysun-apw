@@ -440,16 +440,23 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-photo"></div>
+<section class="hero" id="hero-section">
+  <div class="hero-photo" id="hero-photo"></div>
+
+  <!-- Top-left: barely visible label -->
+  <div class="hero-label">APW Partnership · 2026</div>
+
+  <!-- Main text: bottom-left, editorial -->
   <div class="hero-content">
-    <div class="hero-eyebrow reveal">APW × Lesley Sun · Partnership Proposal 2026</div>
-    <h1 class="reveal d1">Lesley Sun</h1>
+    <div class="hero-pre reveal">Contemporary Womenswear · Malaysia</div>
+    <h1 class="reveal d1">Lesley<br>Sun</h1>
     <div class="hero-tagline reveal d2 gold-shimmer">Fashion. &nbsp;Community. &nbsp;Culture.</div>
-    <div class="hero-divider reveal d2"></div>
-    <p class="hero-desc reveal d3">Building one of Malaysia's most engaged female lifestyle communities through fashion, experiences and meaningful connections.</p>
-    <div class="pill reveal d4">Seeking a Long-Term Community Home · APW Bangsar</div>
+    <div class="hero-scroll reveal d3">
+      <span class="hero-scroll-line"></span>
+      <span>Scroll</span>
+    </div>
   </div>
+
   <div class="hero-corner">Confidential · APW Leasing Team<br>www.lesleysun.com</div>
 </section>
 
@@ -957,6 +964,12 @@
 </footer>
 
 <script>
+/* ── Hero: Ken Burns photo breathing on load ── */
+window.addEventListener('load', () => {
+  const heroPhoto = document.getElementById('hero-photo');
+  if (heroPhoto) setTimeout(() => heroPhoto.classList.add('loaded'), 80);
+});
+
 /* ── Scroll reveal ── */
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
